@@ -666,6 +666,12 @@ button.kp:hover{border-color:#c7d2e3}
 .kp-item b{display:block;color:var(--text);font-size:13px;font-weight:600}
 .nsub{white-space:nowrap;padding-right:12px}
 
+/* Nút mắt xem/ẩn quy tắc ghi nhận tọa độ (mặc định ẩn) */
+.rule-eye{margin-left:auto;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--text-2);font:inherit;font-size:11.5px;cursor:pointer;flex:none}
+.rule-eye:hover{color:var(--primary);border-color:#bfdbfe;background:#f5f9ff}
+.rule-eye.on{color:var(--primary);border-color:#bfdbfe;background:#eef5ff}
+.rule-eye svg{width:14px;height:14px}
+
 </style>
 </head>
 <body>
@@ -1377,7 +1383,7 @@ const LOGS = [];
   });
 })();
 
-const L = { ksQ: '', ruleHidden: false, mode: 'all', tab: 'tracking', viewEmail: null, emails: [], from: '2026-09-30', to: TODAY_ISO, preset: 3, vung: '', cn: '', hd: '', loai: '', st: '',
+const L = { ksQ: '', ruleHidden: true, mode: 'all', tab: 'tracking', viewEmail: null, emails: [], from: '2026-09-30', to: TODAY_ISO, preset: 3, vung: '', cn: '', hd: '', loai: '', st: '',
   sel: null, open: null, hidden: new Set(), more: false, pickQ: '', from_rt: null, play: { idx: 0, on: false, speed: 1, timer: null } };
 // Đối tượng = Tất cả / Log KS: chọn 1 hoặc nhiều QC · Log tracking: chỉ 1 QC
 const isMulti = () => L.mode !== 'tracking';
@@ -1588,7 +1594,9 @@ function renderLogPanel() {
   if (L.tab !== 'tracking') st.push('<b>' + fmtN(nK) + '</b> phiếu KS');
   st.push('<b>' + days.length + '</b> ngày');
   if (!single) st.push('<b>' + EMV.length + '</b> QC');
-  const stats = '<div class="sum-l2">' + st.join('<i>·</i>') + '</div>';
+  // Quy tắc ghi nhận tọa độ: mặc định ẩn, bấm biểu tượng mắt để xem
+  const eye = L.tab === 'tracking' ? '<button class="rule-eye' + (L.ruleHidden ? '' : ' on') + '" id="ruleX" title="' + (L.ruleHidden ? 'Xem' : 'Ẩn') + ' quy tắc ghi nhận tọa độ">' + ic(L.ruleHidden ? 'eye' : 'eyeOff', 'sm') + '<span>Quy tắc</span></button>' : '';
+  const stats = '<div class="sum-l2">' + st.join('<i>·</i>') + eye + '</div>';
 
   let list = '';
   if (!rows.length) list = '<div class="empty"><div class="ico">' + ic('calendar') + '</div><h4>Không có dữ liệu</h4><p>Không có log trong khoảng thời gian / bộ lọc đã chọn.</p></div>';
@@ -1620,7 +1628,7 @@ function renderLogPanel() {
   P.innerHTML = logTabs() + chooserBar() + (L.tab === 'ks' ? '<div class="ks-search"><input class="ctl" id="ksQ" placeholder="Nhập để tìm kiếm" value="' + L.ksQ.replace(/"/g, '&quot;') + '"></div>' : '<div class="sum">' + who + stats + '</div>') + '<div class="cntbar">Hiển thị: ' + (rows.length ? '1 - ' + rows.length : 0) + ' / ' + rows.length.toLocaleString('vi-VN') + ' bản ghi</div><div class="scroll" id="logList">' + (L.tab === 'tracking' ? ruleCard() : '') + list + '</div>';
   const kq = $('ksQ');
   if (kq) kq.oninput = e => { L.ksQ = e.target.value; L.sel = null; renderLogPanel(); renderLogMap(); const k2 = $('ksQ'); k2.focus(); k2.setSelectionRange(k2.value.length, k2.value.length); };
-  const rc = $('ruleX'); if (rc) rc.onclick = e => { e.stopPropagation(); L.ruleHidden = !L.ruleHidden; renderLogPanel(); };
+  ['ruleX', 'ruleHide'].forEach(id => { const b = $(id); if (b) b.onclick = e => { e.stopPropagation(); L.ruleHidden = !L.ruleHidden; renderLogPanel(); }; });
   bindLogTabs(); bindChooser(P);
   P.querySelectorAll('.lr').forEach(el => el.onclick = () => { L.sel = L.sel === +el.dataset.id ? null : +el.dataset.id; syncPlayToSel(); renderLogPanelSel(); renderLogMap(); });
   P.querySelectorAll('.day-h').forEach(el => {
@@ -1661,9 +1669,9 @@ function segRow(r) {
 }
 // Thẻ minh họa quy tắc — đặt ngay đầu danh sách để thuyết trình
 function ruleCard() {
-  if (L.ruleHidden) return '<button class="rule-show" id="ruleX">' + ic('info', 'xs') + ' Xem quy tắc ghi nhận tọa độ</button>';
+  if (L.ruleHidden) return '';
   return '<div class="rulecard">' +
-    '<div class="rc-h">' + ic('info', 'sm') + '<b>Quy tắc ghi nhận tọa độ</b><span class="muted">hệ thống quét 1 phút/lần</span><button class="icon-btn" id="ruleX" title="Ẩn">' + ic('x', 'sm') + '</button></div>' +
+    '<div class="rc-h">' + ic('info', 'sm') + '<b>Quy tắc ghi nhận tọa độ</b><span class="muted">hệ thống quét 1 phút/lần</span><button class="icon-btn" id="ruleHide" title="Ẩn quy tắc">' + ic('eyeOff', 'sm') + '</button></div>' +
     '<div class="rc-rules">' +
       '<div><span class="sg-tag move">Di chuyển</span><span>Cách điểm gốc ≥ ' + STOP_M + ' m → lưu &amp; hiển thị <b>1 dòng / phút</b></span></div>' +
       '<div><span class="sg-tag stop">Đứng yên</span><span>Cách điểm gốc &lt; ' + STOP_M + ' m → <b>không tạo dòng mới</b>, chỉ kéo dài giờ kết thúc</span></div>' +
