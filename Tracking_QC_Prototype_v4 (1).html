@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FTEL CMS — Tracking QC Prototype v5</title>
+<title>FTEL CMS — Tracking QC Prototype v5.9</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
@@ -204,7 +204,7 @@ svg.i.sm{width:14px;height:14px} svg.i.xs{width:12px;height:12px}
 
 .daytl{position:relative;height:46px;margin:10px 0 6px}
 .daytl .track{position:absolute;left:0;right:0;top:8px;height:16px;background:var(--off-50);border-radius:6px;border:1px solid var(--line-2)}
-.daytl .blk{position:absolute;top:8px;height:16px;border-radius:5px;cursor:pointer;display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:700;min-width:16px;transition:.12s}
+.daytl .blk{position:absolute;top:8px;height:16px;border-radius:5px;cursor:pointer;display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:700;min-width:4px;transition:.12s}
 .daytl .blk.done{background:#3b82f6}
 .daytl .blk.doing{background:repeating-linear-gradient(-45deg,#f97316 0 4px,#fb923c 4px 8px)}
 .daytl .blk:hover,.daytl .blk.on{transform:scaleY(1.25);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--primary)}
@@ -372,7 +372,7 @@ svg.i.sm{width:14px;height:14px} svg.i.xs{width:12px;height:12px}
 .lr .body .b{font-size:11px;color:var(--text-3);margin-top:1px}
 .lr .ks-name{font-weight:600;color:var(--text)}
 
-.inspector{position:absolute;top:12px;left:12px;z-index:9;width:300px;background:#fff;border-radius:12px;box-shadow:var(--sh-3);overflow:hidden;animation:tin .15s}
+.inspector{position:absolute;top:12px;left:12px;z-index:9;width:330px;background:#fff;border-radius:12px;box-shadow:var(--sh-3);overflow:hidden;animation:tin .15s}
 .insp-h{padding:12px 14px;display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line-2)}
 .insp-h .t{font-weight:700;font-size:13px}
 .insp-h .s{font-size:11.5px;color:var(--text-2)}
@@ -473,7 +473,7 @@ button.kp:hover{border-color:#c7d2e3}
 .exp-empty{font-size:12px;color:var(--text-2);padding:6px 0}
 .daytl.sm{height:30px;margin:8px 0 2px}
 .daytl.sm .track{top:2px;height:12px;border-radius:4px}
-.daytl.sm .blk{top:2px;height:12px;font-size:8.5px;min-width:13px;border-radius:3px}
+.daytl.sm .blk{top:2px;height:12px;font-size:8.5px;min-width:4px;border-radius:3px}
 .daytl.sm .tick{top:17px;font-size:9.5px}
 .daytl.sm .now{top:-1px;height:18px}
 .qc-exp .items{padding:2px 0 0}
@@ -814,6 +814,67 @@ button.kp:hover{border-color:#c7d2e3}
 .ci-dist.ok{color:#15803d}.ci-dist.warn{color:#b45309}.ci-dist.bad{color:#b91c1c}
 .na-chip{display:inline-flex;align-items:center;height:16px;padding:0 6px;border-radius:8px;background:var(--off-50);border:1px solid var(--off-200);color:var(--text-2);font-size:10.5px;font-weight:600;white-space:nowrap}
 
+/* v6 (06/10) — Lịch sử: mặc định chỉ tọa độ có cập nhật hợp đồng · Cho phép xem chi tiết log theo ngày · quét 5 phút/lần */
+.dt-sw{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px 10px 3px 4px;font-size:11.5px;font-weight:600;color:var(--text-2);cursor:pointer;white-space:nowrap;transition:.15s}
+.dt-sw:hover{border-color:#94a3b8}
+.dt-sw i{width:26px;height:15px;border-radius:999px;background:#cbd5e1;position:relative;transition:.15s;flex:none}
+.dt-sw i::after{content:'';position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:.15s}
+.dt-sw.on{border-color:var(--primary);color:var(--primary);background:var(--primary-50)}
+.dt-sw.on i{background:var(--primary)}
+.dt-sw.on i::after{left:13px}
+.day-h.det .sw{box-shadow:0 0 0 3px rgba(22,104,220,.2)}
+.sum-note{display:flex;align-items:center;gap:6px;margin:8px 12px 4px;padding:6px 10px;border-radius:8px;background:#f8fafc;border:1px dashed #cbd5e1;color:var(--text-2);font-size:11.5px}
+.sum-note svg{width:13px;height:13px;color:var(--text-3);flex:none}
+.fl-tag{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:999px;margin-right:6px;white-space:nowrap}
+.fl-tag svg{width:11px;height:11px}
+.fl-tag.st{background:#dcfce7;color:#15803d}
+.fl-tag.en{background:#e2e8f0;color:#0f172a}
+.lr.sg.scan.fl{background:#fafbfd}
+.lr .body .b .dp{color:var(--text-3)}
+.ks-tag{display:inline-flex;align-items:center;gap:3px;height:18px;padding:0 7px;border-radius:9px;background:var(--primary-50);border:1px solid var(--primary-100);color:#1d4ed8;font-size:10.5px;font-weight:600;white-space:nowrap}
+.ks-tag svg{width:11px;height:11px}
+.ks-tag.warn{background:#fffbeb;border-color:#fbbf24;color:#b45309}
+.ks-tag.bad{background:#fef2f2;border-color:#fca5a5;color:#b91c1c}
+.gp-n{font-size:11.5px;color:var(--text-2)}
+.sg-tag.scan{background:#eef4ff;color:#1d4ed8}
+.sg-tag.ks{background:#fef3c7;color:#92400e}
+.sg-tag.det{background:#ede9fe;color:#5b21b6}
+.map-hint{position:absolute;left:50%;top:64px;transform:translateX(-50%);z-index:4;display:flex;gap:10px;align-items:flex-start;width:min(420px,calc(100% - 140px));background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--sh-2);font-size:12.5px;color:var(--text-2);pointer-events:none}
+.map-hint svg{flex:none;color:var(--primary);margin-top:1px}
+.map-hint b{color:var(--text)}
+.map-hint span{display:block;margin-top:3px;line-height:1.45}
+
+.day-h.dh2{flex-direction:column;align-items:stretch;gap:6px;padding:8px 14px 9px}
+.day-h.dh2 .dh-1{display:flex;align-items:center;gap:8px;min-width:0}
+.day-h.dh2 .dh-1 .c{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day-h.dh2 .dh-2{display:flex;align-items:center;gap:8px;padding-left:22px;min-width:0}
+.day-h.dh2 .dh-n{font-size:11px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day-h.dh2.det .dh-n{color:var(--primary)}
+
+.kv dd.col{flex-direction:column;align-items:flex-start;gap:2px}
+.kv dd.col .cp{display:flex;align-items:center;gap:6px}
+
+.ksr-gap{display:flex;align-items:center;gap:5px;color:#b45309;font-size:11.5px;margin-top:3px}
+
+.lr.sg.gap.ongo .body .a .mono{margin-right:2px}
+.lr.sg.gap.ongo{background:#fff7f7}
+
+.player .pt .row .pl-l{overflow:hidden;text-overflow:ellipsis}
+.player .pt .row b .pl-gap{font-style:normal;font-family:'Be Vietnam Pro',-apple-system,'Segoe UI',Roboto,sans-serif;font-size:11px;font-weight:600;color:#b91c1c;background:#fef2f2;border-radius:4px;padding:1px 6px;margin-right:6px}
+
+.dotn{position:absolute;transform:translate(6px,-3px);min-width:17px;height:16px;padding:0 4px;border-radius:8px;background:#fff;border:1.5px solid var(--c,#2563eb);color:var(--c,#2563eb);font-size:10px;font-weight:700;line-height:13px;text-align:center;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.25);z-index:8;font-variant-numeric:tabular-nums}
+.dotn:hover,.dotn.is-sel{background:var(--c,#2563eb);color:#fff}
+.dotn.lg{position:static;transform:none;display:inline-block;margin-right:6px;--c:#2563eb}
+
+.gp-lbl{position:absolute;white-space:nowrap;font-size:11px;font-weight:600;line-height:16px;padding:2px 7px;border-radius:6px;color:#fff;box-shadow:0 1px 4px rgba(15,23,42,.3);z-index:10;pointer-events:none}
+.gp-lbl.a{background:#475569;transform:translate(calc(-100% - 6px),-150%)}
+.gp-lbl.b{background:#16a34a;transform:translate(6px,-150%)}
+
+.fl-tag.op{background:#ede9fe;color:#6d28d9}
+
+.rc-ex.v2 td:nth-child(2){white-space:normal;width:38%}
+.rc-ex.v2 td:nth-child(3){line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -837,7 +898,7 @@ button.kp:hover{border-color:#c7d2e3}
       <div class="nav" data-ic="doc">DANH MỤC<span class="chev" data-ic="chevD"></span></div>
       <div class="nav" data-ic="doc">QUẢN TRỊ<span class="chev" data-ic="chevD"></span></div>
     </div>
-    <div class="side-foot">Prototype v5.0 · Tracking QC · dữ liệu minh họa</div>
+    <div class="side-foot">Prototype v5.9 · cập nhật 08/10 · Tracking QC · dữ liệu minh họa</div>
   </aside>
 
   <main class="main">
@@ -856,14 +917,14 @@ button.kp:hover{border-color:#c7d2e3}
         <div class="page-title">Tracking QC</div>
         <!-- Tab cấp trang (line tabs): icon + nhãn ngắn; mô tả đưa vào tooltip; chấm xanh = dữ liệu đang cập nhật trực tiếp -->
         <div class="tq-tabs" role="tablist" aria-label="Chế độ xem Tracking QC">
-          <button class="tq-tab" id="ttRt" role="tab" data-v="rt" aria-controls="viewRt" title="Realtime · Hôm nay: QC đang ở đâu, làm gì (vị trí, trạng thái tại lần quét gần nhất, tự cập nhật 1 phút/lần)">
-            <span data-ic="radio"></span><span class="lb" data-t="Realtime">Realtime</span><span class="tq-live" id="ttLive" title="Đang cập nhật trực tiếp · lần quét 14:32"></span>
+          <button class="tq-tab" id="ttRt" role="tab" data-v="rt" aria-controls="viewRt" title="Realtime · Hôm nay: QC đang ở đâu, làm gì (vị trí, trạng thái tại lần quét gần nhất, tự cập nhật 5 phút/lần)">
+            <span data-ic="radio"></span><span class="lb" data-t="Realtime">Realtime</span><span class="tq-live" id="ttLive" title="Đang cập nhật trực tiếp · lần quét 14:30"></span>
           </button>
           <button class="tq-tab" id="ttLog" role="tab" data-v="log" aria-controls="viewLog" title="Lịch sử · Nhiều ngày: QC đã đi đâu, làm gì (lộ trình tracking và log kiểm soát theo khoảng ngày)">
             <span data-ic="history"></span><span class="lb" data-t="Lịch sử">Lịch sử</span>
           </button>
         </div>
-        <div class="ph-right tq-note"><span data-ic="info"></span>Quét tọa độ 1 phút/lần · 24/7, kể cả Thứ Bảy, Chủ nhật, ngày lễ</div>
+        <div class="ph-right tq-note"><span data-ic="info"></span>MobiQC gửi tọa độ khi mở app và mỗi mốc 5 phút (:00, :05…) · 24/7, kể cả Thứ Bảy, Chủ nhật, ngày lễ</div>
       </div>
 
       <!-- ===== Tab Realtime ===== -->
@@ -871,8 +932,8 @@ button.kp:hover{border-color:#c7d2e3}
         <div class="rt-bar">
           <div class="kstrip" id="kpis"></div>
           <div class="ph-right">
-            <span class="live" id="rtLive"><span class="dot"></span><span id="rtLiveText">LIVE · 02/10 · quét 14:32</span></span>
-            <button class="btn sm demo" id="btnSim" title="Demo quy tắc: qua ngày reset trạng thái về Tạm nghỉ, thông tin phần tử = N/A"><span data-ic="moon"></span><span>Mô phỏng qua ngày</span></button>
+            <span class="live" id="rtLive"><span class="dot"></span><span id="rtLiveText">LIVE · 02/10 · quét 14:30</span></span>
+            <button class="btn sm demo" id="btnSim" title="Demo quy tắc: qua ngày reset trạng thái về Tạm nghỉ, thông tin phần tử = N/A, checkin hôm trước hết hiệu lực"><span data-ic="moon"></span><span>Mô phỏng qua ngày</span></button>
           </div>
         </div>
       <div class="pf-card" id="rtFilter">
@@ -913,7 +974,7 @@ button.kp:hover{border-color:#c7d2e3}
           <div id="rtCtx"></div>
           <div class="map-tools"><div class="grp"><button data-ic="plus"></button><button data-ic="minus"></button></div><div class="grp"><button data-ic="target" title="Căn giữa"></button><button data-ic="layers" title="Lớp bản đồ"></button></div></div>
           <div class="legend" id="rtLegend"></div>
-          <div class="scan-chip"><span class="spin"></span>Tự động lấy tọa độ 1 phút/lần · lần quét tiếp sau <b id="cd">45</b>s<button class="btn link" id="scanNow" style="font-size:11.5px">Quét ngay</button></div>
+          <div class="scan-chip"><span class="spin"></span>MobiQC gửi tọa độ mỗi mốc 5 phút · mốc tiếp theo sau <b id="cd">3:00</b><button class="btn link" id="scanNow" style="font-size:11.5px">Quét ngay</button></div>
         </div>
       </div>
       </div>
@@ -1041,7 +1102,7 @@ function hydrateIcons(root) {
 // ---------- Helpers ----------
 const $ = id => document.getElementById(id);
 const TODAY = '02/10/2026', TODAY_ISO = '2026-10-02';
-let NOW = 14 * 60 + 32;   // thời điểm lần quét gần nhất (hệ thống quét tọa độ 1 phút/lần)
+let NOW = 14 * 60 + 32;   // giờ hiện tại của bản demo · lần quét gần nhất 14:30 (hệ thống quét tọa độ 5 phút/lần)
 const ST = {
   working: { label: 'Đang làm việc', color: '#16a34a' },
   idle:    { label: 'Tạm nghỉ',      color: '#f59e0b' },
@@ -1146,49 +1207,53 @@ function baseMap() {
 // =========================================================
 // DATA
 // =========================================================
-// Phần tử thuộc 1 trong 2 loại KS: Dịch vụ hoặc Hạ tầng. 1 QC có thể cập nhật cả 2 loại.
-// item: [tên, indoor, checkin, hoàn tất, tọa độ checkin, loại KS (mặc định theo QC)]
+// Danh mục QC (dữ liệu minh họa). Phần tử thuộc 1 trong 2 loại KS: Dịch vụ hoặc Hạ tầng; 1 QC có thể cập nhật cả 2 loại.
+// pos = khu vực làm việc thường ngày · nha = nơi QC ở ngoài giờ làm (hệ thống theo dõi 24/7)
+// Bản đồ nền là nội thành Hà Nội → QC mẫu đều thuộc vùng Hà Nội (cặp Vùng – Chi nhánh theo dữ liệu prototype gốc: Hà Nội 1 – CMU, Hà Nội 2 – NBH, LCI)
+// Realtime KHÔNG khai báo cứng trạng thái / vị trí / phần tử: suy ra từ cùng dữ liệu Log tracking + Log KS của tab Lịch sử (buildQcs)
 const QC_SOURCE = [
-  { email: 'ngoanv3@fpt.com', status: 'working', loaiKS: 'Dịch vụ', vung: '01. Hà Nội 1', cn: 'CMU', hd: 'Đang xử lý', pos: [21.0372, 105.8478], scan: '14:32:00',
-    items: [['HNH0412387', 'Không', '08:12:40', '08:41:05', [21.0398, 105.8335]], ['HNI.P021.08', 'N/A', '09:20:11', '09:58:47', [21.0331, 105.8378], 'Hạ tầng'], ['HNH0413002', 'Không', '13:05:26', '13:37:59', [21.0290, 105.8461]], ['HNH0413177', 'Có', '14:18:30', null, null]] },
-  { email: 'huynq270@fpt.com', status: 'working', loaiKS: 'Dịch vụ', vung: '01. Hà Nội 1', cn: 'CMU', hd: 'Đang xử lý', pos: [21.0245, 105.8560], scan: '14:32:00',
-    items: [['HNH0398811', 'Không', '08:45:02', '09:15:40', [21.0300, 105.8519]], ['HNH0399054', 'Không', '14:05:11', null, null]] },
-  { email: 'longpd9@fpt.com', status: 'working', loaiKS: 'Hạ tầng', vung: '05. Đà Nẵng', cn: 'DLK', hd: 'Đang xử lý', pos: [21.0200, 105.8340], scan: '14:32:00',
-    items: [['DNG.P012.34', 'N/A', '07:58:13', '08:30:22', [21.0240, 105.8395]], ['DNG0518823', 'Có', '10:12:44', '10:55:01', [21.0190, 105.8445], 'Dịch vụ'], ['DNG.P015.02', 'N/A', '13:42:08', null, null]] },
-  { email: 'tungtn4@fpt.com', status: 'idle', loaiKS: 'Hạ tầng', vung: '07. Hồ Chí Minh', cn: 'DNI', hd: 'Đã xử lý, đang theo dõi', pos: [21.0331, 105.8617], scan: '14:32:00',
-    items: [['pyn.i.u.pp.241225.11', 'N/A', '09:22:32', '09:50:22', [21.0368, 105.8578]], ['pyn.i.u.pp.241225.12', 'N/A', '10:31:08', '11:02:14', [21.0310, 105.8650]], ['SGH0877531', 'Không', '12:40:15', '13:12:48', [21.0352, 105.8700], 'Dịch vụ']] },
-  { email: 'lannh5@fpt.com', status: 'idle', loaiKS: 'Dịch vụ', vung: '02. Hà Nội 2', cn: 'NBH', hd: 'Đang xử lý', pos: [21.0410, 105.8500], scan: '14:32:00', items: [] },
-  { email: 'haptt3@fpt.com', status: 'working', loaiKS: 'Dịch vụ', vung: '02. Hà Nội 2', cn: 'LCI', hd: 'Đang xử lý', pos: [21.0395, 105.8720], scan: '14:32:00',
-    items: [['HNH0877120', 'Có', '14:10:22', null, null]] },
-  { email: 'phuongnt12@fpt.com', status: 'offline', loaiKS: 'Dịch vụ', vung: '03. Hải Dương', cn: 'HYN', hd: 'Đang xử lý', pos: [21.0235, 105.8655], scan: '14:24:00',
-    items: [['HDG.P007.12', 'N/A', '08:05:19', '08:44:51', [21.0275, 105.8600], 'Hạ tầng'], ['HDG0220398', 'Không', '13:30:18', '14:02:33', [21.0220, 105.8700]]] },
-  { email: 'hieunq11@fpt.com', status: 'offline', loaiKS: 'Hạ tầng', vung: '06. Miền Trung', cn: 'CBG', hd: 'Đã xử lý, đang theo dõi', pos: [21.0180, 105.8540], scan: '14:17:00',
-    items: [['CBG.H004.11', 'N/A', '13:45:30', null, null]] },
-  { email: 'duylv7@fpt.com', status: 'idle', loaiKS: 'Hạ tầng', vung: '09. Bình Dương', cn: 'BDG', hd: 'Đang xử lý', pos: [21.0420, 105.8660], scan: '14:32:00',
-    items: [['BDG.T021.05', 'N/A', '11:15:40', '11:55:02', [21.0390, 105.8690]]] },
+  { email: 'ngoanv3@fpt.com',    loaiKS: 'Dịch vụ', vung: '01. Hà Nội 1', cn: 'CMU', hd: 'Đang xử lý',              pos: [21.0372, 105.8478], nha: [21.0425, 105.8335] },
+  { email: 'huynq270@fpt.com',   loaiKS: 'Dịch vụ', vung: '01. Hà Nội 1', cn: 'CMU', hd: 'Đang xử lý',              pos: [21.0245, 105.8560], nha: [21.0175, 105.8445] },
+  { email: 'longpd9@fpt.com',    loaiKS: 'Hạ tầng', vung: '01. Hà Nội 1', cn: 'CMU', hd: 'Đang xử lý',              pos: [21.0200, 105.8340], nha: [21.0300, 105.8310] },
+  { email: 'tungtn4@fpt.com',    loaiKS: 'Hạ tầng', vung: '02. Hà Nội 2', cn: 'LCI', hd: 'Đã xử lý, đang theo dõi', pos: [21.0331, 105.8617], nha: [21.0425, 105.8590] },
+  { email: 'lannh5@fpt.com',     loaiKS: 'Dịch vụ', vung: '02. Hà Nội 2', cn: 'NBH', hd: 'Đang xử lý',              pos: [21.0410, 105.8500], nha: [21.0330, 105.8395] },
+  { email: 'haptt3@fpt.com',     loaiKS: 'Dịch vụ', vung: '02. Hà Nội 2', cn: 'LCI', hd: 'Đang xử lý',              pos: [21.0395, 105.8720], nha: [21.0285, 105.8735] },
+  { email: 'phuongnt12@fpt.com', loaiKS: 'Dịch vụ', vung: '02. Hà Nội 2', cn: 'NBH', hd: 'Đang xử lý',              pos: [21.0235, 105.8655], nha: [21.0180, 105.8740] },
+  { email: 'hieunq11@fpt.com',   loaiKS: 'Hạ tầng', vung: '01. Hà Nội 1', cn: 'CMU', hd: 'Đã xử lý, đang theo dõi', pos: [21.0180, 105.8540], nha: [21.0260, 105.8450] },
+  { email: 'duylv7@fpt.com',     loaiKS: 'Hạ tầng', vung: '02. Hà Nội 2', cn: 'LCI', hd: 'Đang xử lý',              pos: [21.0420, 105.8660], nha: [21.0350, 105.8560] },
 ];
-const D_LAT = [-0.0028, 0.0025, -0.0026, 0.0027], D_LNG = [0.0034, 0.0031, -0.0033, 0.0030];
-
+const QC_DIR = QC_SOURCE.map(q => ({ email: q.email, vung: q.vung, cn: q.cn, loaiKS: q.loaiKS, hd: q.hd, home: q.pos, nha: q.nha }));
+const qcByEmail = e => QC_DIR.find(q => q.email === e);
+const SCAN_MIN = 5;          // MobiQC gửi log tọa độ ở mỗi mốc 5 phút (:00, :05, …) khi app đang bật + gửi ngay khi mở app (Hieu 08/10; cấu hình được)
+const GRACE = 1;             // phút chờ log của 1 mốc về tới CMS trước khi coi là không nhận được (Đề xuất, cấu hình được)
+const expMark = () => Math.floor((NOW - GRACE) / SCAN_MIN) * SCAN_MIN;   // mốc gần nhất đáng lẽ đã phải có log
+const hmsOf = m => pad(Math.floor(m / 60)) + ':' + pad(m % 60) + ':00';
+// Realtime = lát cắt "hôm nay, tới lần quét gần nhất" của chính dữ liệu Lịch sử
+//  · Vị trí hiện tại = tọa độ cuối cùng nhận được hôm nay
+//  · Trạng thái: qua mốc 5 phút (cho trễ GRACE phút) mà CMS chưa nhận được log → Offline (app tắt / mất tín hiệu → MobiQC không gửi gì; kể cả khi đang có phần tử)
+//    còn phần tử đang KS → Đang làm việc; còn lại → Tạm nghỉ
+//  · Phần tử trong ngày = Log KS hôm nay: đã có TG KS → TG / tọa độ hoàn tất = TG / tọa độ cập nhật; TG KS = N/A → đang KS
 function buildQcs(sim) {
   return QC_SOURCE.map((q, qi) => {
-    const items = sim ? [] : q.items.map((a, i) => {
-      const [ten, indoor, ci, ht, ciPos0] = a;
-      const ciPos = ciPos0 || [q.pos[0] - 0.0024, q.pos[1] - 0.0026];  // đang KS: checkin cạnh vị trí hiện tại
-      const htPos = ht ? [ciPos[0] + D_LAT[i % 4], ciPos[1] + D_LNG[i % 4]] : null;
-      const end = ht ? mins(ht) : NOW;
-      return { ten, indoor, ci, ht, ciPos, htPos, loaiKS: a[5] || q.loaiKS, ciFull: TODAY + ' ' + ci, htFull: ht ? TODAY + ' ' + ht : null, minutes: end - mins(ci), ksSec: ht ? secs(ht) - secs(ci) : null };   // Thời gian KS = TG hoàn tất − TG checkin
-    }).sort((a, b) => b.ci.localeCompare(a.ci));   // mới nhất -> cũ nhất
-    return { ...q, id: qi + 1, status: sim ? 'idle' : q.status, scanFull: sim ? '03/10/2026 00:00:00' : TODAY + ' ' + q.scan, items };
+    const pts = LOGS.filter(r => r.type === 'tracking' && r.email === q.email && r.day === TODAY).sort((x, y) => x.time.localeCompare(y.time));
+    const last = pts[pts.length - 1], fix = last;
+    const items = sim ? [] : LOGS.filter(r => r.type === 'ks' && r.email === q.email && r.day === TODAY).map(k => {
+      const done = k.ksShow != null;
+      return { id: k.id, ten: k.ptd, indoor: k.indoor, loaiKS: k.loaiKS, ci: k.ciTime, ht: done ? k.time : null,
+        ciPos: [k.ciLat, k.ciLng], htPos: done ? [k.lat, k.lng] : null, ciFull: TODAY + ' ' + k.ciTime, htFull: done ? TODAY + ' ' + k.time : null,
+        minutes: (done ? mins(k.time) : NOW) - mins(k.ciTime), ksSec: done ? secs(k.time) - secs(k.ciTime) : null };   // Thời gian KS = TG hoàn tất − TG checkin
+    }).sort((x, y) => y.ci.localeCompare(x.ci));   // mới nhất -> cũ nhất
+    const off = mins(last.time) < expMark();
+    const status = sim ? 'idle' : off ? 'offline' : items.some(it => !it.ht) ? 'working' : 'idle';
+    return { ...q, id: qi + 1, status, pos: [fix.lat, fix.lng], lastOff: off, scanFull: sim ? '03/10/2026 00:00:00' : TODAY + ' ' + (off ? fix.time : last.time), items };
   });
 }
-const QC_DIR = QC_SOURCE.map(q => ({ email: q.email, vung: q.vung, cn: q.cn, loaiKS: q.loaiKS, hd: q.hd, home: q.pos }));
-const qcByEmail = e => QC_DIR.find(q => q.email === e);
 
 // =========================================================
 // REALTIME
 // =========================================================
 const RT = { sim: false, status: '', q: '', ptd: '', vung: '', cn: '', loai: '', sort: 'status', qcId: null, itemIdx: null };
-let qcs = buildQcs(false);
+let qcs = [];   // dựng ở initRt(), sau khi đã sinh dữ liệu Log tracking + Log KS
 
 function rtBase() {
   const s = RT.q.trim().toLowerCase(), p = RT.ptd.trim().toLowerCase();
@@ -1239,12 +1304,12 @@ function resetRt() {
   renderRt();
 }
 
-const TL0 = 6 * 60, TL1 = 20 * 60;
+const TL0 = 0, TL1 = 24 * 60;   // trục 00:00 – 24:00: hệ thống theo dõi 24/7
 const tlPos = m => Math.max(0, Math.min(100, (m - TL0) / (TL1 - TL0) * 100));
 function miniTl(q) {
   return '<div class="mini-tl">' + q.items.map(it => {
     const a = tlPos(mins(it.ci)), b = tlPos(it.ht ? mins(it.ht) : NOW);
-    return '<i class="' + (it.ht ? 'done' : 'doing') + '" style="left:' + a + '%;width:' + Math.max(1.5, b - a) + '%"></i>';
+    return '<i class="' + (it.ht ? 'done' : 'doing') + '" style="left:' + a + '%;width:' + Math.max(.6, b - a) + '%"></i>';
   }).join('') + (RT.sim ? '' : '<span class="now" style="left:' + tlPos(NOW) + '%"></span>') + '</div>';
 }
 
@@ -1302,11 +1367,11 @@ function renderQd() { $('qdPanel').style.display = 'none'; }
 function qdBody(q) {
   const done = q.items.filter(i => i.ht).length;
   const total = q.items.reduce((s, i) => s + (i.ksSec || 0), 0);   // tổng TG KS của phần tử đã hoàn tất
-  const ticks = [6, 9, 12, 15, 18].map(h => '<span class="tick" style="left:' + tlPos(h * 60) + '%">' + pad(h) + 'h</span>').join('');
+  const ticks = [0, 6, 12, 18, 24].map(h => '<span class="tick" style="left:' + tlPos(h * 60) + '%">' + pad(h) + 'h</span>').join('');
   const blocks = q.items.map((it, i) => {
     const a = tlPos(mins(it.ci)), b = tlPos(it.ht ? mins(it.ht) : NOW);
-    return '<div class="blk ' + (it.ht ? 'done' : 'doing') + (RT.itemIdx === i ? ' on' : '') + '" data-i="' + i + '" style="left:' + a + '%;width:' + Math.max(2.2, b - a) + '%" ' +
-      'data-tip="<b>' + it.ten + '</b> · ' + kindOf(it.loaiKS) + '<br><span class=m>' + hm(it.ci) + ' → ' + (it.ht ? hm(it.ht) + ' · KS ' + ksShort(it.ksSec) : 'đang KS') + '</span>">' + (q.items.length - i) + '</div>';
+    return '<div class="blk ' + (it.ht ? 'done' : 'doing') + (RT.itemIdx === i ? ' on' : '') + '" data-i="' + i + '" style="left:' + a + '%;width:' + Math.max(.6, b - a) + '%" ' +
+      'data-tip="<b>' + it.ten + '</b> · ' + kindOf(it.loaiKS) + '<br><span class=m>' + hm(it.ci) + ' → ' + (it.ht ? hm(it.ht) + ' · KS ' + ksShort(it.ksSec) : 'đang KS') + '</span>">' + (b - a >= 3.2 ? q.items.length - i : '') + '</div>';   // khối quá hẹp: không ghi số, xem số thứ tự ở danh sách / tooltip
   }).join('');
 
   const items = q.items.length ? q.items.map((it, i) => {
@@ -1327,6 +1392,7 @@ function qdBody(q) {
         '<dt>Indoor</dt><dd>' + it.indoor + '</dd>' +
         '<dt>TG checkin</dt><dd>' + it.ciFull + '</dd>' +
         '<dt>TG hoàn tất</dt><dd>' + (doneIt ? it.htFull : '<span class="na">N/A</span>') + '</dd>' +
+        (doneIt ? '' : '<dt>Hiệu lực checkin</dt><dd>Đến hết ngày ' + TODAY + ' · qua 00:00 chưa hoàn tất phải checkin lại</dd>') +
         '<dt>Thời gian KS</dt><dd>' + (doneIt ? '<b>' + ksText(it.ksSec) + '</b>' : '<span class="na">N/A</span>') + '</dd>' +
         '<dt>Tọa độ checkin</dt><dd><span class="mono">' + coord(it.ciPos) + '</span><button class="copy" data-c="' + coord(it.ciPos) + '" title="Sao chép">' + ic('copy', 'xs') + '</button></dd>' +
         '<dt>Tọa độ hoàn tất</dt><dd>' + (doneIt ? '<span class="mono">' + coord(it.htPos) + '</span><button class="copy" data-c="' + coord(it.htPos) + '" title="Sao chép">' + ic('copy', 'xs') + '</button>' : '<span class="na">N/A</span>') + '</dd>' +
@@ -1380,20 +1446,33 @@ function renderRtMap() {
     if (!inView(p)) return;
     const isSel = q && x.id === q.id;
     const cls = x.status + (isSel ? ' is-sel' : '');   // không làm mờ QC khác
-    const tip = '<b>' + x.email + '</b><br>' + ST[x.status].label + ' · ' + (x.items.length ? x.items.length + ' ' + unit(x) : 'N/A') + '<br><span class=m>Lần quét ' + x.scanFull.slice(11, 16) + '</span>';
+    const tip = '<b>' + x.email + '</b><br>' + ST[x.status].label + ' · ' + (x.items.length ? x.items.length + ' ' + unit(x) : 'N/A') + '<br><span class=m>' + (x.status === 'offline' ? 'Mất tín hiệu · tọa độ cuối ' : 'Lần quét ') + x.scanFull.slice(11, 16) + '</span>';
     html += '<div class="mk ' + cls + '" style="left:' + p.x + '%;top:' + p.y + '%;z-index:' + (isSel ? 7 : 6) + '" data-qc="' + x.id + '" data-tip="' + tip + '">' +
       gpin(ST[x.status].color) +
-      (isSel ? '<div class="mk-lbl">Vị trí hiện tại · ' + x.scanFull.slice(11, 16) + '</div>' : '') + '</div>';
+      (isSel ? '<div class="mk-lbl">' + (x.status === 'offline' ? 'Vị trí cuối · ' : 'Vị trí hiện tại · ') + x.scanFull.slice(11, 16) + '</div>' : '') + '</div>';   // Offline: cùng cách gọi với Log tracking ("vị trí cuối")
   });
   if (q) {
     let lines = '';
+    // Ghim trùng / sát nhau (nhiều phần tử cùng tòa nhà; phần tử đang KS ngay tại vị trí QC) → đặt lệch sang bên, nét chấm + chấm xám nối về đúng tọa độ
+    const placed = list.map(x => toXY(x.pos[0], x.pos[1])).filter(inView).map(p => [p.x / 100 * W, p.y / 100 * H]);
+    const OFFS = [[34, 0], [-34, 0], [0, -44], [0, 44], [68, 0], [-68, 0], [34, -44], [-34, -44], [34, 44], [-34, 44], [102, 0], [-102, 0]];
+    const free = (x, y) => placed.every(([u, v]) => Math.abs(u - x) >= 30 || Math.abs(v - y) >= 40);
+    const spot = p => {
+      const x0 = p.x / 100 * W, y0 = p.y / 100 * H;
+      let x = x0, y = y0;
+      if (!free(x, y)) { const o = OFFS.find(([dx, dy]) => free(x0 + dx, y0 + dy)); if (o) { x = x0 + o[0]; y = y0 + o[1]; } }
+      placed.push([x, y]);
+      if (x !== x0 || y !== y0) lines += '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x + '" y2="' + y + '" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3"/><circle cx="' + x0 + '" cy="' + y0 + '" r="3" fill="#64748b" stroke="#fff" stroke-width="1"/>';
+      return { x: x / W * 100, y: y / H * 100 };
+    };
     q.items.forEach((it, i) => {
       const n = q.items.length - i, on = RT.itemIdx === i;
-      const a = toXY(it.ciPos[0], it.ciPos[1]);
+      const same = it.htPos && meters({ lat: it.ciPos[0], lng: it.ciPos[1] }, { lat: it.htPos[0], lng: it.htPos[1] }) < 25;   // hoàn tất ngay tại điểm checkin → 1 ghim
+      const a = spot(toXY(it.ciPos[0], it.ciPos[1]));
       html += mkPin(a, it.ht ? 'done' : 'doing', n, { cls: (on ? 'is-sel hl' : ''), z: on ? 9 : 8, data: 'data-it="' + i + '"',
-        tip: '<b>' + it.ten + '</b> · ' + kindOf(it.loaiKS) + '<br>Checkin ' + it.ci + (it.ht ? '<br>Hoàn tất ' + it.ht : '<br><span class=m>Chưa hoàn tất</span>'), label: on ? 'Checkin ' + hm(it.ci) : '' });
-      if (it.htPos) {
-        const b = toXY(it.htPos[0], it.htPos[1]);
+        tip: '<b>' + it.ten + '</b> · ' + kindOf(it.loaiKS) + '<br>Checkin ' + it.ci + (it.ht ? '<br>Hoàn tất ' + it.ht + (same ? ' · tại điểm checkin' : '') : '<br><span class=m>Chưa hoàn tất</span>'), label: on ? 'Checkin ' + hm(it.ci) + (same ? ' · Hoàn tất ' + hm(it.ht) : '') : '' });
+      if (it.htPos && !same) {
+        const b = spot(toXY(it.htPos[0], it.htPos[1]));
         html += mkPin(b, 'ht', ic('check'), { cls: (on ? 'is-sel hl' : ''), z: on ? 9 : 8, data: 'data-it="' + i + '"', tip: '<b>' + it.ten + '</b><br>Hoàn tất ' + it.ht, label: on ? 'Hoàn tất ' + hm(it.ht) : '' });
         lines += '<line x1="' + a.x / 100 * W + '" y1="' + (a.y / 100 * H - 14) + '" x2="' + b.x / 100 * W + '" y2="' + (b.y / 100 * H - 14) + '" stroke="' + (on ? '#1668dc' : '#93b4e6') + '" stroke-width="' + (on ? 2.5 : 1.8) + '" stroke-dasharray="6 5" opacity="1"/>';
       }
@@ -1405,7 +1484,8 @@ function renderRtMap() {
       '<div class="lgr"><span class="sw" style="background:#3b82f6"></span>Checkin (đã hoàn tất)</div>' +
       '<div class="lgr"><span class="sw" style="background:#f97316"></span>Checkin (chưa hoàn tất)</div>' +
       '<div class="lgr"><span class="sw" style="background:#16a34a"></span>Tọa độ hoàn tất</div>' +
-      '<div class="lgr"><span class="ln" style="border-color:#1668dc"></span>Checkin → hoàn tất</div>';
+      '<div class="lgr"><span class="ln" style="border-color:#1668dc"></span>Checkin → hoàn tất (khi cách nhau ≥ 25 m)</div>' +
+      '<div class="lgr"><span class="ln" style="border-color:#64748b;border-top-style:dotted"></span>Ghim tách khỏi chỗ trùng · chấm xám = đúng tọa độ</div>';
   } else {
     $('rtCtx').innerHTML = '';
     $('rtLegend').innerHTML = '<div class="lt">Trạng thái QC</div>' +
@@ -1420,13 +1500,16 @@ function renderRtMap() {
 
 function doScan(manual) {
   if (RT.sim) { if (manual) toast('Đang ở chế độ mô phỏng qua ngày', 'info'); return; }
-  NOW++;
-  const t = pad(Math.floor(NOW / 60)) + ':' + pad(NOW % 60) + ':00';
-  QC_SOURCE.forEach(q => {
-    if (q.status === 'offline') return;            // mất tín hiệu: giữ tọa độ & lần quét cuối
-    if (q.status === 'working') q.pos = [q.pos[0] + (Math.random() - .5) * .0005, q.pos[1] + (Math.random() - .5) * .0007];
-    q.scan = t;
+  NOW = Math.floor(NOW / SCAN_MIN) * SCAN_MIN + SCAN_MIN;   // lần quét kế tiếp (SCAN_MIN phút/lần)
+  const t = hmsOf(NOW);
+  // Lần quét mới: ghi tiếp 1 điểm / QC vào Log tracking hôm nay → Realtime và Lịch sử luôn cùng 1 dữ liệu
+  let id = LOGS.reduce((m, r) => Math.max(m, r.id), 0);
+  qcs.forEach(q => {
+    if (q.lastOff) return;   // app đang tắt / mất tín hiệu: MobiQC không gửi log → CMS không nhận gì ở mốc này
+    const p = [q.pos[0] + (Math.random() - .5) * .00003, q.pos[1] + (Math.random() - .5) * .00003];
+    LOGS.push({ id: ++id, type: 'tracking', email: q.email, day: TODAY, time: t, lat: p[0], lng: p[1], status: q.items.some(it => !it.ht) ? 'working' : 'idle' });
   });
+  _lfKey = ''; _sgKey = ''; _tpKey = ''; _kaKey = ''; _scanIdx.clear(); _winIdx.clear();   // tab Lịch sử đọc lại dữ liệu mới ở lần hiển thị kế tiếp
   qcs = buildQcs(false);
   $('rtLiveText').textContent = 'LIVE · 02/10 · quét ' + t.slice(0, 5);
   $('ttLive').title = 'Đang cập nhật trực tiếp · lần quét ' + t.slice(0, 5);
@@ -1440,6 +1523,7 @@ function renderRt() {
 }
 
 function initRt() {
+  qcs = buildQcs(false);
   const vungs = [...new Set(QC_SOURCE.map(q => q.vung))].sort(), cns = [...new Set(QC_SOURCE.map(q => q.cn))].sort();
   $('rtVung').innerHTML += vungs.map(v => '<option>' + v + '</option>').join('');
   $('rtCN').innerHTML += cns.map(v => '<option>' + v + '</option>').join('');
@@ -1458,15 +1542,17 @@ function initRt() {
     $('btnSim').classList.toggle('on', RT.sim);
     $('btnSim').innerHTML = ic(RT.sim ? 'sun' : 'moon') + '<span>' + (RT.sim ? 'Quay lại hôm nay' : 'Mô phỏng qua ngày') + '</span>';
     $('rtLive').classList.toggle('sim', RT.sim);
-    $('rtLiveText').textContent = RT.sim ? '03/10 · 00:00 — đã reset đầu ngày' : 'LIVE · 02/10 · quét ' + hm(pad(Math.floor(NOW / 60)) + ':' + pad(NOW % 60));
+    $('rtLiveText').textContent = RT.sim ? '03/10 · 00:00 — đã reset đầu ngày' : 'LIVE · 02/10 · quét ' + hmsOf(Math.floor(NOW / SCAN_MIN) * SCAN_MIN).slice(0, 5);
     $('ttLive').classList.toggle('sim', RT.sim); $('ttLive').title = RT.sim ? 'Đang mô phỏng qua ngày' : 'Đang cập nhật trực tiếp';
-    if (RT.sim) toast('Qua ngày mới: toàn bộ QC reset về Tạm nghỉ, thông tin phần tử = N/A', 'moon');
+    if (RT.sim) toast('Qua ngày mới: toàn bộ QC về Tạm nghỉ, thông tin phần tử = N/A · checkin hôm trước hết hiệu lực, phần tử chưa hoàn tất phải checkin lại', 'moon');
     renderRt();
   };
-  // Hệ thống tự lấy tọa độ QC 1 phút/lần → màn realtime tự làm mới theo chu kỳ quét
-  let cd = 45;
-  setInterval(() => { cd--; if (cd <= 0) { doScan(); cd = 60; } $('cd').textContent = cd; }, 1000);
-  $('scanNow').onclick = () => { doScan(true); cd = 60; $('cd').textContent = cd; };
+  // Hệ thống lấy tọa độ QC SCAN_MIN phút/lần (mặc định 5) → màn Realtime tự làm mới theo chu kỳ quét
+  const fmtCd = s => Math.floor(s / 60) + ':' + pad(s % 60);
+  let cd = (Math.floor(NOW / SCAN_MIN) * SCAN_MIN + SCAN_MIN - NOW) * 60;
+  $('cd').textContent = fmtCd(cd);
+  setInterval(() => { cd--; if (cd <= 0) { doScan(); cd = SCAN_MIN * 60; } $('cd').textContent = fmtCd(cd); }, 1000);
+  $('scanNow').onclick = () => { doScan(true); cd = SCAN_MIN * 60; $('cd').textContent = fmtCd(cd); };
 }
 
 // =========================================================
@@ -1483,7 +1569,8 @@ let seed = 11;
 const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
 const LOGS = [];
 (function genLogs() {
-  // Hệ thống tự động lấy tọa độ QC 1 phút/lần → mỗi ngày làm việc (08:00–17:30) có ~570 bản ghi tracking
+  // Mô phỏng vị trí QC từng phút, 24/7; cuối cùng chỉ giữ các lần quét theo chu kỳ SCAN_MIN phút (scanEvery). Khối này sinh phần giờ làm (08:00–17:30);
+  // ngoài giờ (ở nhà, đi làm, tan làm, tắt máy ban đêm) sinh ở fullDay() bằng chuỗi ngẫu nhiên riêng → phần giờ làm giữ nguyên
   let id = 0;
   const S = 8 * 60, E = 17 * 60 + 30;
   const lerp = (a, b, f) => [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
@@ -1494,7 +1581,7 @@ const LOGS = [];
       const nks = 1 + Math.floor(rnd() * 3), ks = [];
       for (let k = 0; k < nks; k++) {
         const loai = (k === 1 && qi % 2 === 0) ? (q.loaiKS === 'Dịch vụ' ? 'Hạ tầng' : 'Dịch vụ') : q.loaiKS;
-        const ptd = loai === 'Dịch vụ' ? q.email.slice(0, 2).toUpperCase() + 'H0' + (410000 + qi * 997 + di * 113 + k * 7) : (qi === 3 ? 'pyn.i.u.pp.2412' + (20 + di) + '.' + (11 + k) : q.cn + '.P0' + (10 + di) + '.' + pad(30 + k));
+        const ptd = loai === 'Dịch vụ' ? q.email.slice(0, 2).toUpperCase() + 'H0' + (410000 + qi * 997 + di * 113 + k * 7) : (qi === 3 ? 'pyn.i.u.pp.2412' + (20 + di) + '.' + (11 + k) : q.cn + '.P' + String(10 + qi * 10 + di).padStart(3, '0') + '.' + pad(30 + k));   // mã trạm riêng từng QC → không trùng tên giữa các QC cùng chi nhánh
         const t = (9 + k * 2 + qi % 2) * 60 + Math.floor(rnd() * 45), ksMin = 10 + Math.floor(rnd() * 30);
         const rec = { id: ++id, type: 'ks', email: q.email, day, time: pad(Math.floor(t / 60)) + ':' + pad(t % 60) + ':' + pad(Math.floor(rnd() * 59)),
           ptd, loaiKS: loai, indoor: loai === 'Hạ tầng' ? 'N/A' : (rnd() > .5 ? 'Có' : 'Không'), ksMin, ketQua: rnd() < .8 ? 'Bình thường' : 'Có lỗi', ksShow: rnd() < .15 ? null : ksMin,
@@ -1577,9 +1664,9 @@ const LOGS = [];
     let i = -1;
     if (demo[key]) i = mv.find(j => pts[j].time.slice(0, 5) === demo[key]) ?? -1;
     if (i < 0) { if (r3() > 0.5) return; i = mv[Math.floor(r3() * mv.length)]; }
-    const a = pts[i], b = pts[i + 1], f = .35 + r3() * .4, q = qcByEmail(a.email), di = DAYS.indexOf(a.day);
+    const a = pts[i], b = pts[i + 1], f = .35 + r3() * .4, q = qcByEmail(a.email), di = DAYS.indexOf(a.day), qi = QC_DIR.indexOf(q);
     const sec = Math.floor(f * 60), t = mins(a.time);
-    const ptd = q.loaiKS === 'Dịch vụ' ? q.email.slice(0, 2).toUpperCase() + 'H0' + (520000 + DAYS.length * 37 + di * 211 + t) : q.cn + '.P0' + (40 + di) + '.' + pad(10 + t % 80);
+    const ptd = q.loaiKS === 'Dịch vụ' ? q.email.slice(0, 2).toUpperCase() + 'H0' + (520000 + DAYS.length * 37 + di * 211 + t) : qi === 3 ? 'pyn.i.u.pp.2412' + (20 + di) + '.' + (40 + t % 50) : q.cn + '.P' + (100 + qi * 10 + di) + '.' + pad(10 + t % 80);
     const m = 3 + Math.floor(r3() * 6);
     LOGS.push({ id: ++id, type: 'ks', email: a.email, day: a.day, time: a.time.slice(0, 6) + pad(Math.min(59, sec)), ptd, loaiKS: q.loaiKS, indoor: q.loaiKS === 'Hạ tầng' ? 'N/A' : 'Không',
       ksMin: m, ketQua: 'Bình thường', ksShow: m, lat: a.lat + (b.lat - a.lat) * f + (r3() - .5) * .0003, lng: a.lng + (b.lng - a.lng) * f + (r3() - .5) * .0003, t, moving: true });   // lệch GPS thực tế: vài mét tới ~20 m
@@ -1620,8 +1707,148 @@ const LOGS = [];
   });
 })();
 
+// ===== Theo dõi 24/7: bổ sung lần quét ngoài giờ làm (chuỗi ngẫu nhiên riêng → không đổi dữ liệu giờ làm) =====
+// 00:00 → ở nhà → đi làm, tới điểm xuất phát trước 08:00 · sau 17:30 → về nhà → ở nhà tới 23:59 · hôm nay: chỉ tới lần quét gần nhất
+// Chỉ ghi nhận tọa độ khi có tín hiệu, không có sóng thì bỏ qua (Hieu 07/10) → "lần đầu trong ngày" = lần đầu có tín hiệu, không nhất thiết 00:00:
+//  · đa số QC không có tín hiệu ban đêm → có tín hiệu từ 06:00–08:10 (hoặc lúc bắt đầu làm), mất tín hiệu từ 19:30–23:00
+//  · lannh5 có tín hiệu cả đêm → 00:00 / 23:55; ngoanv3 đêm 28/09 cũng vậy · hôm nay: duylv7 09:04 mới mở app (kể cả giờ làm), ngoanv3 mở app 07:44
+(function fullDay() {
+  let s5 = 2468;
+  const r5 = () => { s5 = (s5 * 16807) % 2147483647; return (s5 - 1) / 2147483646; };
+  let id = LOGS.reduce((m, r) => Math.max(m, r.id), 0);
+  const ON_NIGHT = { 'lannh5@fpt.com': [-1, 0, 1, 2, 3, 4, 5], 'ngoanv3@fpt.com': [2] };   // đêm sau ngày DAYS[i] (−1 = đêm trước ngày đầu) vẫn có tín hiệu
+  const LATE_ON = { ['duylv7@fpt.com|' + TODAY]: 9 * 60 + 4, ['ngoanv3@fpt.com|' + TODAY]: 7 * 60 + 44 };   // mở app 09:04 / 07:44 (ngoài mốc) → gửi log ngay, 1 phút sau tới mốc 09:05 / 07:45 gửi tiếp
+  const SPEED = 0.0006;   // như lộ trình giờ làm (độ/phút)
+  const dist = (p, q2) => Math.hypot(p[0] - q2[0], p[1] - q2[1]);
+  const groups = new Map();
+  LOGS.forEach(r => { if (r.type !== 'tracking') return; const k = r.email + '|' + r.day; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(r); });
+  const add = [];
+  QC_DIR.forEach(q => DAYS.forEach((day, di) => {
+    const a = (groups.get(q.email + '|' + day) || []).sort((x, y) => x.time.localeCompare(y.time));
+    if (!a.length) return;
+    const nights = ON_NIGHT[q.email] || [], late = LATE_ON[q.email + '|' + day];
+    const offTo = nights.includes(di - 1) ? -1 : late != null ? late : 6 * 60 + Math.floor(r5() * 130);                  // có tín hiệu từ (sáng)
+    const offFrom = day === TODAY || nights.includes(di) ? 1e9 : 19 * 60 + 30 + Math.floor(r5() * 210);                // mất tín hiệu từ (tối)
+    if (late != null) a.forEach(p => { if (mins(p.time) < late) p.status = 'offline'; });   // giờ làm trước lúc có tín hiệu cũng không có tọa độ
+    let fix = q.nha;
+    const put = (m, p) => {
+      const off = m < offTo || m >= offFrom;
+      if (!off) fix = p;
+      add.push({ type: 'tracking', email: q.email, day, time: pad(Math.floor(m / 60)) + ':' + pad(m % 60) + ':' + pad(Math.floor(r5() * 3)), lat: off ? fix[0] : p[0], lng: off ? fix[1] : p[1], status: off ? 'offline' : 'idle' });
+    };
+    const still = c => [c[0] + (r5() - .5) * .00003, c[1] + (r5() - .5) * .00003];
+    const road = (from, to, f, m) => { const p = [from[0] + (to[0] - from[0]) * f, from[1] + (to[1] - from[1]) * f]; return [p[0] + Math.sin(m / 3) * .00012, p[1] + Math.cos(m / 4) * .00015]; };
+    // Sáng: ở nhà → đi làm
+    const S = mins(a[0].time), start = [a[0].lat, a[0].lng];
+    const tr1 = Math.max(6, Math.round(dist(q.nha, start) / SPEED)), arrive = S - 3 - Math.floor(r5() * 12), leave = arrive - tr1;
+    for (let m = 0; m < S; m++) put(m, m < leave ? still(q.nha) : m < arrive ? road(q.nha, start, (m - leave) / tr1, m) : still(start));
+    // Tối: tan làm → về nhà → ở nhà tới 23:59
+    if (day !== TODAY) {
+      const lp = a[a.length - 1], E = mins(lp.time), endP = [lp.lat, lp.lng];
+      const tr2 = Math.max(6, Math.round(dist(endP, q.nha) / SPEED)), dep = E + 2 + Math.floor(r5() * 14);
+      for (let m = E + 1; m < 24 * 60; m++) put(m, m < dep ? still(endP) : m < dep + tr2 ? road(endP, q.nha, (m - dep) / tr2, m) : still(q.nha));
+    }
+  }));
+  add.forEach(r => { r.id = ++id; LOGS.push(r); });
+})();
+// ===== Ca minh họa Realtime lúc 14:32 — lấy từ chính dữ liệu Lịch sử =====
+(function todayCases() {
+  const ks = LOGS.filter(r => r.type === 'ks' && r.day === TODAY);
+  const track = e => LOGS.filter(r => r.type === 'tracking' && r.email === e && r.day === TODAY).sort((x, y) => x.time.localeCompare(y.time));
+  const at = (a, time) => { let p = a[0]; for (const x of a) { if (x.time <= time) p = x; else break; } return p; };
+  // 1) Phiếu hôm nay đã cập nhật quá 1 giờ mà TG KS = N/A (do sinh ngẫu nhiên) → coi là đã hoàn tất, tránh QC "Đang làm việc" cả ngày trong dữ liệu mẫu
+  ks.forEach(k => { if (k.ksShow == null && mins(k.time) < NOW - 60) k.ksMin = k.ksShow = Math.max(1, Math.round((secs(k.time) - secs(k.ciTime)) / 60)); });
+  // 2) Phần tử đang kiểm soát lúc 14:32: đã checkin, đã cập nhật phiếu, chưa hoàn tất (TG KS = N/A) — tại đúng điểm QC đang đứng
+  let s6 = 6262; const r6 = () => { s6 = (s6 * 16807) % 2147483647; return (s6 - 1) / 2147483646; };
+  const near = (p, m) => { const g = r6() * Math.PI * 2, d = m * r6(); return [p.lat + Math.sin(g) * d / 110540, p.lng + Math.cos(g) * d / (111320 * Math.cos(21.03 * Math.PI / 180))]; };
+  let id = LOGS.reduce((m, r) => Math.max(m, r.id), 0);
+  [['ngoanv3@fpt.com', 'NGH0410699', 'Có', '14:18:30', '14:26:12'],
+   ['longpd9@fpt.com', 'CMU.P036.32', 'N/A', '13:42:08', '13:58:40'],
+   ['haptt3@fpt.com', 'HAH0415670', 'Có', '14:10:22', '14:23:05'],
+   ['hieunq11@fpt.com', 'CMU.P086.31', 'N/A', '13:45:30', '14:02:51']].forEach(([e, ptd, indoor, ci, up]) => {
+    const q = qcByEmail(e), a = track(e), [cLat, cLng] = near(at(a, ci), 12), [uLat, uLng] = near(at(a, up), 8);
+    LOGS.push({ id: ++id, type: 'ks', email: e, day: TODAY, time: up, ptd, loaiKS: q.loaiKS, indoor, ksMin: null, ksShow: null, lat: uLat, lng: uLng, t: mins(up), ciTime: ci, ciLat: cLat, ciLng: cLng });
+  });
+  const hu = ks.filter(k => k.email === 'huynq270@fpt.com').sort((x, y) => y.time.localeCompare(x.time))[0];
+  if (hu) hu.ksMin = hu.ksShow = null;   // huynq270: phiếu cập nhật 14:30, chưa hoàn tất
+  // 3) Mất tín hiệu tới lần quét gần nhất: phuongnt12 từ 14:25, hieunq11 từ 14:20 → Realtime báo Offline ngay (lần quét gần nhất không có tọa độ), Log tracking có dòng Mất tín hiệu
+  [['phuongnt12@fpt.com', '14:24:59'], ['hieunq11@fpt.com', '14:17:59']].forEach(([e, from]) => {
+    let fix = null;
+    track(e).forEach(p => { if (p.time <= from) fix = p; else { p.status = 'offline'; p.lat = fix.lat; p.lng = fix.lng; } });
+  });
+})();
+// ===== Ca minh họa Mất tín hiệu khi đang di chuyển (nhìn bản đồ là hiểu) =====
+// ngoanv3 hôm nay: cập nhật NGH0522287 trên đường lúc 12:42 → tắt app 12:43 (mốc 12:45, 12:50 không có log) → mở lại app 12:53 ở điểm mới (gửi log ngay), 12:55 tiếp mốc
+// → danh sách: "12:40 → 12:53 · Mất tín hiệu · lỡ 2 lần quét"; bản đồ: nét đứt đỏ nối điểm 12:40 → điểm 12:53
+(function demoGap() {
+  let fix = null;
+  LOGS.filter(r => r.type === 'tracking' && r.email === 'ngoanv3@fpt.com' && r.day === TODAY).sort((x, y) => x.time.localeCompare(y.time)).forEach(p => {
+    const m = mins(p.time);
+    if (m <= 12 * 60 + 42) { if (p.status !== 'offline') fix = p; return; }
+    if (m < 12 * 60 + 53 && fix) { p.status = 'offline'; p.lat = fix.lat; p.lng = fix.lng; }
+  });
+})();
+// ===== Tên phần tử duy nhất trong ngày của 1 QC (sinh ngẫu nhiên có thể trùng → tăng số cuối) =====
+(function uniqueNames() {
+  const used = new Map();
+  LOGS.filter(r => r.type === 'ks').sort((x, y) => (x.email + iso(x.day) + x.time).localeCompare(y.email + iso(y.day) + y.time)).forEach(k => {
+    const key = k.email + '|' + k.day; if (!used.has(key)) used.set(key, new Set());
+    const u = used.get(key);
+    while (u.has(k.ptd)) k.ptd = k.ptd.replace(/(\d+)$/, d => String(+d + 1).padStart(d.length, '0'));
+    u.add(k.ptd);
+  });
+})();
+// ===== Cập nhật phiếu KS phải mở MobiQC → app gửi log ngay lúc mở: phiếu không thể rơi vào lúc app tắt =====
+// Dữ liệu mẫu có phiếu rơi vào khoảng app tắt (VD ngoanv3 28/09 11:08) → coi như QC mở app 1 phút trước khi cập nhật, app bật tiếp tới hết khoảng đó
+(function ksOpensApp() {
+  const idx = new Map();
+  LOGS.forEach(r => { if (r.type === 'tracking') idx.set(r.email + '|' + r.day + '|' + mins(r.time), r); });
+  let s7 = 4242; const r7 = () => { s7 = (s7 * 16807) % 2147483647; return (s7 - 1) / 2147483646; };
+  LOGS.filter(k => k.type === 'ks').forEach(k => {
+    const base = k.email + '|' + k.day + '|';
+    let m = mins(k.time) - 1;
+    const a0 = idx.get(base + m), a1 = idx.get(base + (m + 1));
+    if (!((a0 && a0.status === 'offline') || (a1 && a1.status === 'offline'))) return;
+    if (a0 && a0.status !== 'offline') m++;
+    let p;
+    while ((p = idx.get(base + m)) && p.status === 'offline') { p.status = 'working'; p.lat = k.lat + (r7() - .5) * .00003; p.lng = k.lng + (r7() - .5) * .00003; m++; }
+  });
+})();
+// ===== Trạng thái tại từng lần quét — cùng quy tắc với Realtime =====
+// Không có tọa độ → Mất tín hiệu (Offline) · có phần tử đã checkin, chưa hoàn tất → Đang làm việc · còn lại → Tạm nghỉ
+// Phần tử chưa hoàn tất giữ Đang làm việc tới hết ngày (checkin chỉ có hiệu lực trong ngày)
+(function deriveStatus() {
+  const span = new Map();
+  LOGS.forEach(k => { if (k.type !== 'ks') return; const key = k.email + '|' + k.day; if (!span.has(key)) span.set(key, []); span.get(key).push([secs(k.ciTime), k.ksShow != null ? secs(k.time) : 86400]); });
+  LOGS.forEach(p => { if (p.type !== 'tracking' || p.status === 'offline') return; const t = secs(p.time), s = span.get(p.email + '|' + p.day) || []; p.status = s.some(([x, y]) => t >= x && t < y) ? 'working' : 'idle'; });
+})();
+// ===== MobiQC gửi log về CMS (Hieu 08/10) =====
+// (1) Mở app → gửi ngay 1 log (thường lệch mốc, VD 07:44). (2) App đang bật → gửi ở mỗi phút chia hết cho SCAN_MIN (:00, :05, …). App tắt → không gửi gì
+// CMS chỉ có các log nhận được (đều có tọa độ), KHÔNG có bản ghi "mất tín hiệu" → tự suy ra từ mốc 5 phút không có log (buildRows)
+// Dữ liệu mẫu sinh theo từng phút (offline = app tắt) → giữ đúng các log CMS nhận được
+(function appLogs() {
+  const byKey = new Map();
+  LOGS.forEach(r => { if (r.type !== 'tracking') return; const k = r.email + '|' + r.day; if (!byKey.has(k)) byKey.set(k, []); byKey.get(k).push(r); });
+  const keep = new Set();
+  byKey.forEach(a => {
+    a.sort((x, y) => x.time.localeCompare(y.time));
+    let prevOn = false, prevM = -2;
+    a.forEach(p => {
+      const m = mins(p.time), on = p.status !== 'offline';
+      if (!on) { prevOn = false; prevM = m; return; }
+      const opened = m !== 0 && !(prevOn && prevM === m - 1);   // phút trước app tắt / chưa có dữ liệu → vừa mở app (00:00 = app bật từ hôm trước)
+      if (opened) p.open = true;
+      if (opened || m % SCAN_MIN === 0) keep.add(p);
+      prevOn = true; prevM = m;
+    });
+  });
+  let w = 0;
+  for (let i = 0; i < LOGS.length; i++) { const r = LOGS[i]; if (r.type !== 'tracking' || keep.has(r)) LOGS[w++] = r; }
+  LOGS.length = w;
+})();
+
 const L = { ksQ: '', ruleHidden: true, dayKey: '', legSym: false, mode: 'all', tab: 'all', viewEmail: null, emails: [], from: '2026-09-30', to: TODAY_ISO, preset: 3, vung: '', cn: '', hd: '', loai: '', st: '',
-  sel: null, open: null, hidden: new Set(), more: false, pickQ: '', play: { idx: 0, on: false, speed: 1, timer: null } };
+  sel: null, open: null, hidden: new Set(), detail: new Set(), more: false, pickQ: '', play: { idx: 0, on: false, speed: 1, timer: null } };
 // Đối tượng = Tất cả / Log KS: chọn 1 hoặc nhiều QC · Log tracking: chỉ 1 QC
 const isMulti = () => L.mode !== 'tracking';
 // 3 tab kết quả: Tất cả (gộp Log tracking + Log KS theo thời gian) / Log tracking / Log KS
@@ -1638,7 +1865,7 @@ function effEmails() {
 }
 const needChooser = () => tabNeedsOne() && L.emails.length > 1;
 const MODE_LABEL = { all: 'Tất cả', tracking: 'Log tracking', ks: 'Log KS' };
-const TAB_TIP = { all: 'Gộp Log tracking và Log KS theo thời gian · xem từng QC', tracking: 'Lộ trình sau gộp: Di chuyển / Đứng yên / Mất tín hiệu · xem từng QC', ks: 'Log kiểm soát, giữ format prod · xem được nhiều QC' };
+const TAB_TIP = { all: 'Lần quét tracking + Log KS theo thời gian · mặc định chỉ hiện tọa độ có cập nhật hợp đồng · xem từng QC', tracking: 'Các log tọa độ MobiQC gửi về (khi mở app + mỗi mốc ' + SCAN_MIN + ' phút), không có thông tin hợp đồng · mặc định chỉ hiện tọa độ có cập nhật hợp đồng · xem từng QC', ks: 'Log kiểm soát, giữ format prod · xem được nhiều QC' };
 
 let _lfKey = '', _lfVal = [];
 function logFiltered() {
@@ -1658,59 +1885,93 @@ function logFiltered() {
     if (L.hd && q.hd !== L.hd) return false;
     if (L.loai && r.type === 'ks' && r.loaiKS !== L.loai) return false;
     if (L.st && r.type === 'tracking' && r.status !== L.st) return false;
-    return true;
+    return inWin(r);
   }).sort((a, b) => (iso(b.day) + b.time).localeCompare(iso(a.day) + a.time));
 }
-// ===== Quy tắc ghi nhận tọa độ (đã chốt) =====
-// 1) Di chuyển: cách điểm gốc ≥ STOP_M mét → 1 bản ghi / lần quét (1 phút)
-// 2) Đứng yên: cách điểm gốc < STOP_M mét → không tạo dòng mới, kéo dài giờ kết thúc của điểm dừng đang mở
-// 3) Mất tín hiệu: không nhận được tọa độ → gộp thành 1 khoảng "Mất tín hiệu"
-const STOP_M = 40;
+// ===== Quy tắc ghi nhận tọa độ (Hieu chốt 06/10) =====
+// 1) Hệ thống quét tọa độ QC SCAN_MIN phút/lần (mặc định 5, cấu hình được); mỗi lần quét = 1 bản ghi: thời điểm + tọa độ
+//    Không gộp dòng, không suy ra "đứng yên bao nhiêu phút" (giữa 2 lần quét không có dữ liệu → không có mốc neo)
+// 2) Mất tín hiệu = lần quét không nhận được tọa độ NẰM GIỮA 2 lần có tọa độ; các lần liên tiếp gộp 1 dòng; bản đồ nối nét đứt đỏ từ điểm cuối cùng nhận tín hiệu
+//    tới điểm ghi nhận tín hiệu trở lại. Trước lần đầu / sau lần cuối có tín hiệu trong ngày: bỏ qua (Hieu 07/10)
+// 3) Mặc định chỉ hiện tọa độ có cập nhật hợp đồng + ghi nhận tọa độ lần đầu / lần cuối có tín hiệu trong ngày; mất tín hiệu chỉ hiện khi bật chi tiết; bản đồ không tải tọa độ
+// 4) "Cho phép xem chi tiết log" theo từng ngày → hiện toàn bộ lần quét của ngày đó trên danh sách và bản đồ
+const STOP_M = 40;    // (tham chiếu cũ — không còn dùng để gộp dòng)
 const GPS_TOL = 10;   // sai số GPS điện thoại coi là trùng vị trí (Đề xuất, cấu hình được)
 function meters(a, b) {
   const dy = (a.lat - b.lat) * 110540, dx = (a.lng - b.lng) * 111320 * Math.cos(a.lat * Math.PI / 180);
   return Math.hypot(dx, dy);
 }
-function buildSegs(ptsAsc) {
-  const out = [];
-  let cur = null;
-  ptsAsc.forEach(p => {
-    if (p.status === 'offline') {
-      if (cur && cur.kind === 'gap') { cur.end = p.time; cur.count++; }
-      else out.push(cur = { id: p.id, type: 'tracking', kind: 'gap', email: p.email, day: p.day, time: p.time, start: p.time, end: p.time, count: 1, lat: p.lat, lng: p.lng, status: 'offline' });
-      return;
-    }
-    if (cur && cur.kind !== 'gap' && meters(cur, p) < STOP_M) {
-      if (cur.kind === 'move') { cur.kind = 'stop'; }
-      cur.end = p.time; cur.count++;
-      return;
-    }
-    out.push(cur = { id: p.id, type: 'tracking', kind: 'move', email: p.email, day: p.day, time: p.time, start: p.time, end: p.time, count: 1, lat: p.lat, lng: p.lng, status: p.status });
+// Dòng Log tracking của 1 QC trong 1 ngày (ptsAsc: các lần quét đã lọc, tăng dần thời gian)
+// · lần quét có tọa độ → 1 dòng 'scan' (khoảng cách tới lần có tọa độ liền trước, cờ ghi nhận tọa độ lần đầu / lần cuối trong ngày)
+// · các lần quét LIÊN TIẾP không có tọa độ → 1 dòng 'gap' (vị trí cuối trước khi mất · vị trí có lại)
+// Mất tín hiệu chạm 00:00 hoặc 23:55: vị trí cuối nằm ở ngày hôm trước, có lại ở ngày hôm sau
+const shiftDay = (d, n) => { const [dd, mm, yy] = d.split('/').map(Number), t = new Date(Date.UTC(yy, mm - 1, dd + n)); return pad(t.getUTCDate()) + '/' + pad(t.getUTCMonth() + 1) + '/' + t.getUTCFullYear(); };
+const edgeFix = (email, day, lastOne) => { const a = scanIdx(email, day).filter(p => p.status !== 'offline'); return a.length ? a[lastOne ? a.length - 1 : 0] : null; };
+const absMin = p => { const [dd, mm, yy] = p.day.split('/').map(Number); return Date.UTC(yy, mm - 1, dd) / 60000 + mins(p.time); };
+const durTxt = m => m < 60 ? m + ' phút' : Math.floor(m / 60) + ' giờ' + (m % 60 ? ' ' + (m % 60) + ' phút' : '');
+const gapA = r => r.from || r.fromPrev || null, gapB = r => r.to || r.toNext || null;
+const gapFromTxt = r => r.from ? hm(r.from.time) : r.fromPrev ? hm(r.fromPrev.time) + ' ngày ' + r.fromPrev.day.slice(0, 5) : r.start <= '00:00:59' ? 'từ ngày hôm trước' : '—';
+const gapToTxt = r => r.to ? 'có lại ' + hm(r.to.time) : r.toNext ? 'có lại ' + hm(r.toNext.time) + ' ngày ' + r.toNext.day.slice(0, 5) : r.day === TODAY ? 'chưa có lại' : 'chưa có lại đến hết ngày';
+const gapDistTxt = r => { const a = gapA(r), b = gapB(r); return a && b ? ' · cách ' + fmtM(Math.round(meters(a, b))) : ''; };
+// Mốc 5 phút nằm giữa 2 log (m0, m1 = phút của log trước / log sau; log sau tự phủ mốc của nó)
+const missedMarks = (m0, m1) => { const a = []; for (let m = Math.floor(m0 / SCAN_MIN) * SCAN_MIN + SCAN_MIN; m < m1; m += SCAN_MIN) a.push(m); return a; };
+const marksTxt = r => (r.marks.length <= 4 ? r.marks.map(hmsOf) : [hmsOf(r.marks[0]), hmsOf(r.marks[1]), '…', hmsOf(r.marks[r.marks.length - 1])]).map(x => x === '…' ? x : x.slice(0, 5)).join(', ').replace(', …,', ' …');
+// Dòng Log tracking của 1 QC trong 1 ngày, dựng từ các log CMS nhận được (tăng dần thời gian, đều có tọa độ)
+// · mỗi log → 1 dòng 'scan' (open = log gửi ngay khi mở app, thường lệch mốc 5 phút)
+// · giữa 2 log liền nhau có mốc 5 phút không nhận được log → 1 dòng 'gap' Mất tín hiệu: từ log trước → log sau, nét đứt đỏ nối 2 điểm
+// · hôm nay: sau log cuối đã qua mốc (cho trễ GRACE phút) mà chưa có log → dòng Mất tín hiệu đang tiếp diễn
+// · trước log đầu / sau log cuối của ngày đã qua: bỏ qua
+function buildRows(email, day) {
+  const full = scanIdx(email, day); if (!full.length) return [];
+  const first = full[0], last = full[full.length - 1], out = [];
+  const gapRow = (a, b, mk) => ({ id: -a.id, type: 'tracking', kind: 'gap', email, day, time: hmsOf(mk[0]), start: hmsOf(mk[0]), end: hmsOf(mk[mk.length - 1]), count: mk.length, marks: mk, lat: a.lat, lng: a.lng, status: 'offline', from: a, to: b });
+  full.forEach((p, i) => {
+    const pf = full[i - 1], mk = pf ? missedMarks(mins(pf.time), mins(p.time)) : [];
+    if (mk.length) out.push(gapRow(pf, p, mk));
+    out.push({ id: p.id, type: 'tracking', kind: 'scan', email, day, time: p.time, start: p.time, end: p.time, lat: p.lat, lng: p.lng, status: p.status, open: !!p.open,
+      dPrev: pf ? Math.round(meters(pf, p)) : null, afterGap: mk.length > 0, first: p === first, last: p === last });
   });
+  if (day === TODAY) { const mk = missedMarks(mins(last.time), expMark() + 1); if (mk.length) out.push(gapRow(last, null, mk)); }
   return out;
 }
-const segMin = sg => (mins(sg.end) - mins(sg.start)) + (sg.kind === 'gap' ? 1 : 0);
 let _sgKey = '', _sgAsc = [], SEGMAP = new Map();
-function segsAsc() {   // toàn bộ đoạn (tăng dần thời gian), theo từng QC + ngày
+function segsAsc() {   // toàn bộ dòng (tăng dần thời gian), theo từng QC + ngày
   const f = logFiltered();
   if (_lfKey === _sgKey && _sgKey) return _sgAsc;
   _sgKey = _lfKey;
-  const groups = {};
-  f.filter(r => r.type === 'tracking').slice().reverse().forEach(r => { (groups[r.email + '|' + r.day] = groups[r.email + '|' + r.day] || []).push(r); });
-  _sgAsc = Object.values(groups).sort((a, b) => iso(a[0].day).localeCompare(iso(b[0].day))).flatMap(buildSegs);
+  // các QC + ngày trong bộ lọc có log; dòng Mất tín hiệu tính từ toàn bộ log của ngày (không phụ thuộc lọc trạng thái)
+  const pairs = [];
+  effEmails().forEach(e => { const q = qcByEmail(e); if ((L.vung && q.vung !== L.vung) || (L.cn && q.cn !== L.cn) || (L.hd && q.hd !== L.hd)) return;
+    DAYS.forEach(d => { const di = iso(d); if (di >= L.from && di <= L.to && scanIdx(e, d).length) pairs.push([e, d]); }); });
+  const stOk = r => !L.st || (L.st === 'offline' ? r.kind === 'gap' : r.kind === 'scan' && r.status === L.st);   // lọc Offline = các khoảng mất tín hiệu
+  _sgAsc = pairs.sort((a, b) => iso(a[1]).localeCompare(iso(b[1]))).flatMap(([e, d]) => buildRows(e, d)).filter(stOk);
   SEGMAP = new Map(_sgAsc.map(x => [x.id, x]));
   return _sgAsc;
 }
 // Tab Log KS (giữ như prod): ô "Nhập để tìm kiếm" lọc theo email / tên phần tử
 const ksMatch = r => { if (L.tab !== 'ks') return true; const q = L.ksQ.trim().toLowerCase(); return !q || r.email.includes(q) || r.ptd.toLowerCase().includes(q); };
 const recById = id => SEGMAP.get(id) || LOGS.find(x => x.id === id);
-const isLive = sg => sg.day === TODAY && sg === _sgAsc.filter(x => x.email === sg.email && x.day === TODAY).slice(-1)[0];
+const isLive = r => r.day === TODAY && !!r.last;
 let _tpKey = '', _tpVal = [];
-const trackPts = () => {   // dùng cho bản đồ + phát lại: các đoạn của những ngày đang hiển thị
-  const a = segsAsc(), key = _sgKey + '#' + [...L.hidden].join(',');
-  if (key !== _tpKey) { _tpKey = key; _tpVal = a.filter(r => !L.hidden.has(r.day)); }
+const trackPts = () => {   // bản đồ + phát lại: các dòng của những ngày đang bật "Cho phép xem chi tiết log"
+  const a = segsAsc(), key = _sgKey + '#' + [...L.detail].join(',');
+  if (key !== _tpKey) { _tpKey = key; _tpVal = a.filter(r => L.detail.has(r.day)); }
   return _tpVal;
 };
+// Phiếu KS của QC đang xem theo bộ lọc, không phụ thuộc tab → biết lần quét nào có cập nhật hợp đồng (cả ở tab Log tracking)
+let _kaKey = '', _kaVal = [];
+function ksAll() {
+  const EM = effEmails(); if (!EM.length) return [];
+  const key = [EM.join(','), L.from, L.to, L.vung, L.cn, L.hd, L.loai].join('|');
+  if (key === _kaKey) return _kaVal;
+  _kaKey = key;
+  return _kaVal = LOGS.filter(r => {
+    if (r.type !== 'ks' || !EM.includes(r.email)) return false;
+    const d = iso(r.day); if (d < L.from || d > L.to) return false;
+    const q = qcByEmail(r.email);
+    return (!L.vung || q.vung === L.vung) && (!L.cn || q.cn === L.cn) && (!L.hd || q.hd === L.hd) && (!L.loai || r.loaiKS === L.loai);
+  }).sort((a, b) => (iso(b.day) + b.time).localeCompare(iso(a.day) + a.time));
+}
 
 // ----- Picker -----
 function renderPicker() {
@@ -1776,7 +2037,7 @@ function logTabs() {
       if (!(L.viewEmail && L.emails.includes(L.viewEmail))) return '<span class="tab-n need" title="Tab này xem từng QC — chọn 1 QC ở thanh bên dưới">1 QC</span>';
       em = [L.viewEmail];
     }
-    return '<span class="tab-n">' + LOGS.filter(r => em.includes(r.email) && (m === 'all' || (m === 'tracking' ? r.type === 'tracking' : r.type === 'ks')) && iso(r.day) >= L.from && iso(r.day) <= L.to).length.toLocaleString('vi-VN') + '</span>';
+    return '<span class="tab-n">' + LOGS.filter(r => em.includes(r.email) && (m === 'all' || (m === 'tracking' ? r.type === 'tracking' : r.type === 'ks')) && iso(r.day) >= L.from && iso(r.day) <= L.to && inWin(r)).length.toLocaleString('vi-VN') + '</span>';
   };
   const t = (m, dot, label) => '<button class="ltab ' + (L.tab === m ? 'on' : '') + '" role="tab" aria-selected="' + (L.tab === m) + '" data-m="' + m + '" title="' + TAB_TIP[m] + '">' + dot + label + cnt(m) + '</button>';
   return '<div class="ltabs" role="tablist">' +
@@ -1819,44 +2080,51 @@ function renderLogPanel() {
     bindLogTabs();
     return;
   }
-  const raw = logFiltered();
-  const nT = raw.filter(r => r.type === 'tracking').length, nK = raw.filter(r => r.type === 'ks').length;
-  // Tab Log tracking: hiển thị theo đoạn (di chuyển từng phút / đứng yên gộp / mất tín hiệu gộp)
-  // Tab Tất cả: đoạn tracking + phiếu KS; phiếu KS gắn vào đoạn tracking chứa thời điểm cập nhật
-  const segDesc = L.tab === 'ks' ? [] : segsAsc().slice().reverse();
-  const AD = L.tab === 'all' ? allData() : null;
-  const rows = L.tab === 'tracking' ? segDesc : L.tab === 'all' ? AD.rows : raw.filter(ksMatch);
-  const days = [...new Set(rows.map(r => r.day))];
-  if (!L.open) L.open = new Set(days.slice(0, 1));   // mặc định chỉ mở ngày mới nhất (mỗi ngày ~570 lần quét)
-  const EMV = effEmails(), single = EMV.length === 1, q0 = qcByEmail(EMV[0]);
-  // Tóm tắt gọn: 1 dòng định danh + 1 dòng số liệu
+  const raw = logFiltered(), KST = L.tab === 'ks';
+  const nT = raw.filter(r => r.type === 'tracking').length, ksL = KST ? raw : ksAll(), nK = ksL.length;
+  // Tab Tất cả / Log tracking: mỗi lần quét có tọa độ = 1 dòng; các lần quét liên tiếp không có tọa độ = 1 dòng Mất tín hiệu
+  // Phiếu KS gắn vào lần quét gần thời điểm cập nhật nhất = "tọa độ có cập nhật hợp đồng" (Tất cả: hiện chi tiết; Log tracking: ghi số phần tử)
+  const segDesc = KST ? [] : segsAsc().slice().reverse();
+  const AD = KST ? null : allData();
+  const allRows = L.tab === 'tracking' ? segDesc : L.tab === 'all' ? AD.rows : raw.filter(ksMatch);
+  // Mặc định (ngày chưa bật "Cho phép xem chi tiết log"): chỉ tọa độ có cập nhật hợp đồng + ghi nhận tọa độ lần đầu / lần cuối trong ngày
+  // Mất tín hiệu chỉ hiện khi bật chi tiết log (Hieu chốt 07/10). Tab Tất cả: phiếu cập nhật lúc mất tín hiệu (không có tọa độ quét để gắn) đứng riêng thành dòng phần tử
+  const keep = r => KST || L.detail.has(r.day) || r.type === 'ks' || (r.kind === 'scan' && (r.first || r.last || AD.nest.has(r.id))) || isOngoing(r) || (L.st === 'offline' && r.kind === 'gap');
+  const rows = allRows.flatMap(r => keep(r) ? [r] : L.tab === 'all' && r.kind === 'gap' && AD.nest.has(r.id) ? AD.nest.get(r.id) : []);
+  const gapKs = new Set(L.tab === 'all' ? [...allRows.filter(r => !keep(r) && r.kind === 'gap').flatMap(r => (AD.nest.get(r.id) || []).map(k => k.id)), ...AD.noSig] : []);
+  const days = [...new Set(allRows.map(r => r.day))];
+  if (!L.open) L.open = new Set(days.slice(0, 1));   // mặc định chỉ mở ngày mới nhất
+  const EMV = effEmails(), single = EMV.length === 1;
   const fmtN = n => n.toLocaleString('vi-VN');
-  const who = '';   // không lặp lại email QC trong danh sách (đã có ở ô Email KTV/Auditor)
   const st = [];
-  if (L.tab !== 'ks') { st.push('<span><b>' + fmtN(nT) + '</b> lần quét</span>'); st.push('<span><b>' + fmtN(segDesc.length) + '</b> bản ghi sau gộp</span>'); }
+  if (!KST) st.push('<span><b>' + fmtN(nT) + '</b> lần quét</span>');
   if (L.tab !== 'tracking') st.push('<span><b>' + fmtN(nK) + '</b> phần tử</span>');
   st.push('<span><b>' + days.length + '</b> ngày</span>');
   if (!single) st.push('<span><b>' + EMV.length + '</b> QC</span>');
+  if (!KST) st.push('<span>gửi theo mốc ' + SCAN_MIN + ' phút</span>');
   // Quy tắc ghi nhận tọa độ: mặc định ẩn, bấm biểu tượng mắt để xem
-  const eye = L.tab !== 'ks' ? '<button class="rule-eye' + (L.ruleHidden ? '' : ' on') + '" id="ruleX" title="' + (L.ruleHidden ? 'Xem' : 'Ẩn') + ' quy tắc ghi nhận tọa độ">' + ic(L.ruleHidden ? 'eye' : 'eyeOff', 'sm') + '<span>Quy tắc</span></button>' : '';
+  const eye = !KST ? '<button class="rule-eye' + (L.ruleHidden ? '' : ' on') + '" id="ruleX" title="' + (L.ruleHidden ? 'Xem' : 'Ẩn') + ' quy tắc ghi nhận tọa độ">' + ic(L.ruleHidden ? 'eye' : 'eyeOff', 'sm') + '<span>Quy tắc</span></button>' : '';
   const stats = '<div class="sum-l2">' + st.join('<i>·</i>') + eye + '</div>';
 
   let list = '';
-  if (!rows.length) list = '<div class="empty"><div class="ico">' + ic('calendar') + '</div><h4>Không có dữ liệu</h4><p>Không có log trong khoảng thời gian / bộ lọc đã chọn.</p></div>';
+  if (!allRows.length) list = '<div class="empty"><div class="ico">' + ic('calendar') + '</div><h4>Không có dữ liệu</h4><p>Không có log trong khoảng thời gian / bộ lọc đã chọn.</p></div>';
   days.forEach(d => {
-    const KSP = L.tab === 'ks';   // tab Log KS: giữ nguyên như prod (danh sách phẳng, không nhóm ngày)
-    const dr = rows.filter(r => r.day === d), closed = !KSP && !L.open.has(d), hidden = L.hidden.has(d);
-    const t = dr.filter(r => r.type === 'tracking').reduce((s2, r) => s2 + (r.count || 1), 0), k = raw.filter(r => r.type === 'ks' && r.day === d).length;
-    if (!KSP) list += '<div class="day-h ' + (closed ? 'closed ' : '') + (hidden ? 'hidden-map' : '') + '" data-d="' + d + '">' +
-      '<span class="chev">' + ic('chevD', 'sm') + '</span><span class="sw" style="background:' + dayColor(d) + '"></span>' +
-      '<b>' + d + '</b>' + dayTag(d) + '<span class="c">' + [t ? t + ' quét' : '', k ? k + ' phần tử' : ''].filter(Boolean).join(' · ') + '</span>' +
-      '<span class="r"><button class="icon-btn eye" title="' + (hidden ? 'Hiện' : 'Ẩn') + ' trên bản đồ" style="width:26px;height:26px">' + ic(hidden ? 'eyeOff' : 'eye', 'sm') + '</button></span></div>';
-    if (closed) return;
+    const dr = rows.filter(r => r.day === d), closed = !KST && !L.open.has(d), det = L.detail.has(d);
+    if (!KST) {   // tab Log KS: giữ nguyên như prod (danh sách phẳng, không nhóm ngày)
+      const t = raw.filter(r => r.type === 'tracking' && r.day === d).length, k = ksL.filter(r => r.day === d).length;
+      const nScan = allRows.filter(r => r.day === d && r.kind === 'scan').length, nShow = dr.filter(r => r.kind === 'scan').length;
+      const gAll = allRows.filter(r => r.day === d && r.kind === 'gap').length, gShow = dr.filter(r => r.kind === 'gap').length, hidS = nScan - nShow, hidG = gAll - gShow;
+      list += '<div class="day-h dh2 ' + (closed ? 'closed ' : '') + (det ? 'det' : '') + '" data-d="' + d + '">' +
+        '<div class="dh-1"><span class="chev">' + ic('chevD', 'sm') + '</span><span class="sw" style="background:' + dayColor(d) + '"></span>' +
+        '<b>' + d + '</b>' + dayTag(d) + '<span class="c">' + [t ? fmtN(t) + ' lần quét' : gAll ? gAll + ' lần mất tín hiệu' : '', k && L.tab !== 'tracking' ? k + ' phần tử' : ''].filter(Boolean).join(' · ') + '</span></div>' +
+        '<div class="dh-2"><button class="dt-sw' + (det ? ' on' : '') + '" role="switch" aria-checked="' + det + '" title="' + (det ? 'Bấm để thu gọn về mặc định (chỉ tọa độ có cập nhật hợp đồng)' : 'Hiện toàn bộ tọa độ quét được trong ngày ' + d + ' trên danh sách và bản đồ') + '"><i></i><span>Cho phép xem chi tiết log</span></button>' +
+        (det ? '<span class="dh-n">Đang hiện toàn bộ</span>' : hidS || hidG ? '<span class="dh-n" data-tip="' + [hidS ? fmtN(hidS) + ' lần quét không có cập nhật hợp đồng' : '', hidG ? hidG + ' lần mất tín hiệu' : ''].filter(Boolean).join(' · ') + '<br>Bản đồ chưa tải tọa độ ngày này">Đang ẩn ' + (hidS ? fmtN(hidS) + ' lần quét' : hidG + ' lần mất tín hiệu') + '</span>' : '') + '</div></div>';
+      if (closed) return;
+    }
     const idx = new Map(rows.map((x, i) => [x.id, i + 1]));
     list += dr.map(r => {
-      const q = qcByEmail(r.email);
-      if (r.type === 'tracking') { const ks = AD ? AD.nest.get(r.id) || [] : []; return segRow(r, ksNest(r, ks, AD && AD.next.get(r.id), AD && AD.dist), ks); }
-      if (AD) return ksRow(r);   // tab Tất cả: phiếu KS không nằm trong đoạn tracking nào
+      if (r.type === 'tracking') { const ks = AD.nest.get(r.id) || []; return segRow(r, L.tab === 'all' ? ksNest(r, ks, AD.next.get(r.id), AD.dist) : '', ks); }
+      if (L.tab === 'all') return ksRow(r, gapKs.has(r.id));   // tab Tất cả: phiếu KS không gắn được vào lần quét có tọa độ
       // Log KS: giữ đúng format đang chạy trên prod
       return '<div class="lr ksp ' + (L.sel === r.id ? 'active' : '') + '" data-id="' + r.id + '">' +
         '<div class="ksp-h"><span class="ksp-n">' + idx.get(r.id) + '.</span><b>' + r.email + '</b></div>' +
@@ -1869,23 +2137,29 @@ function renderLogPanel() {
     }).join('');
   });
 
-  const shown = AD ? segDesc.length + nK : rows.length;
-  P.innerHTML = logTabs() + chooserBar() + (L.tab === 'ks' ? '<div class="ks-search"><input class="ctl" id="ksQ" placeholder="Nhập để tìm kiếm" value="' + L.ksQ.replace(/"/g, '&quot;') + '"></div>' : '<div class="sum">' + who + stats + '</div>') + '<div class="cntbar">Hiển thị: ' + (shown ? '1 - ' + shown : 0) + ' / ' + shown.toLocaleString('vi-VN') + ' bản ghi' + '</div><div class="scroll" id="logList">' + (L.tab !== 'ks' ? ruleCard() : '') + list + '</div>';
+  const nestN = r => L.tab === 'all' && r.type === 'tracking' ? (AD.nest.get(r.id) || []).length : 0;
+  let cnt;
+  if (KST) cnt = 'Hiển thị: ' + (rows.length ? '1 - ' + rows.length : 0) + ' / ' + fmtN(rows.length) + ' bản ghi';
+  else {
+    const tot = allRows.length + allRows.reduce((s2, r) => s2 + nestN(r), 0), shown = rows.length + rows.reduce((s2, r) => s2 + nestN(r), 0);
+    cnt = 'Hiển thị: ' + fmtN(shown) + ' / ' + fmtN(tot) + ' bản ghi' + (L.detail.size ? ' · đang xem chi tiết log ' + L.detail.size + ' ngày' : shown < tot ? ' · mặc định chỉ hiện tọa độ có cập nhật hợp đồng' : '');
+  }
+  P.innerHTML = logTabs() + chooserBar() + (KST ? '<div class="ks-search"><input class="ctl" id="ksQ" placeholder="Nhập để tìm kiếm" value="' + L.ksQ.replace(/"/g, '&quot;') + '"></div>' : '<div class="sum">' + stats + '</div>') + '<div class="cntbar">' + cnt + '</div><div class="scroll" id="logList">' + (!KST ? ruleCard() : '') + list + '</div>';
   const kq = $('ksQ');
   if (kq) kq.oninput = e => { L.ksQ = e.target.value; L.sel = null; renderLogPanel(); renderLogMap(); const k2 = $('ksQ'); k2.focus(); k2.setSelectionRange(k2.value.length, k2.value.length); };
   ['ruleX', 'ruleHide'].forEach(id => { const b = $(id); if (b) b.onclick = e => { e.stopPropagation(); L.ruleHidden = !L.ruleHidden; renderLogPanel(); }; });
   bindLogTabs(); bindChooser(P);
+  bindTips(P);
   P.querySelectorAll('.lr').forEach(el => el.onclick = () => { L.sel = L.sel === +el.dataset.id ? null : +el.dataset.id; syncPlayToSel(); renderLogPanelSel(); renderLogMap(); panSelIntoView(); });
   P.querySelectorAll('.ksum').forEach(el => el.onclick = e => { e.stopPropagation(); const id = +el.dataset.ks; L.sel = L.sel === id ? null : id; renderLogPanelSel(); renderLogMap(); panSelIntoView(); });
   P.querySelectorAll('.ksn').forEach(el => el.onclick = e => { e.stopPropagation(); L.sel = L.sel === +el.dataset.id ? null : +el.dataset.id; renderLogPanelSel(); renderLogMap(); panSelIntoView(); });
   P.querySelectorAll('.day-h').forEach(el => {
     el.onclick = () => { const d = el.dataset.d; L.open.has(d) ? L.open.delete(d) : L.open.add(d); renderLogPanel(); };
-    el.querySelector('.eye').onclick = e => { e.stopPropagation(); toggleDay(el.dataset.d); };
+    el.querySelector('.dt-sw').onclick = e => { e.stopPropagation(); toggleDetail(el.dataset.d); };
   });
 }
 function renderLogPanelSel() {
   const r = L.sel && recById(L.sel);
-  if (r && L.tab !== 'ks' && L.hidden.has(r.day)) { focusDay(r.day); syncPlayToSel(); renderLogPanel(); }   // bản đồ luôn hiện ngày của bản ghi đang chọn
   if (r && L.tab !== 'ks' && L.open && !L.open.has(r.day)) { L.open.add(r.day); renderLogPanel(); }
   $('logPanel').querySelectorAll('.lr, .ksn').forEach(el => el.classList.toggle('active', +el.dataset.id === L.sel));
   const a = $('logPanel').querySelector('.lr.active, .ksn.active'); if (a) a.scrollIntoView({ block: 'nearest' });
@@ -1895,50 +2169,66 @@ function syncPlayToSel() {
   if (i >= 0) L.play.idx = i;
 }
 
-// Một dòng Log tracking theo quy tắc gộp
+const flLabel = r => r.first ? 'Ghi nhận tọa độ lần đầu trong ngày' : (r.day === TODAY ? 'Ghi nhận tọa độ gần nhất' : 'Ghi nhận tọa độ lần cuối trong ngày');
+const dPrevText = r => r.dPrev == null ? '' : '<span class="dp">' + (r.afterGap ? 'Cách vị trí cuối trước khi mất tín hiệu ' : 'Cách lần quét trước ') + (r.dPrev < GPS_TOL ? '&lt; ' + GPS_TOL + ' m' : fmtM(r.dPrev)) + '</span>';
+// 1 dòng Log tracking: 1 lần quét (thời điểm + tọa độ) hoặc 1 khoảng mất tín hiệu — không còn dòng Đứng yên / thời lượng đứng yên
 function segRow(r, inner = '', ks = []) {
   const act = L.sel === r.id ? ' active' : '';
-  const sum = ksSum(ks);
-  const hm2 = t => t.slice(0, 5);
-  if (r.kind === 'move') {
-    return '<div class="lr sg move' + act + (inner ? ' has-ks' : '') + '" data-id="' + r.id + '"><span class="ic trk"><i style="background:#2563eb"></i></span>' +
-      '<span class="tm">' + r.time + '</span><div class="body"><div class="a"><span class="mono">' + coord([r.lat, r.lng]) + '</span>' + sum + '</div>' +
-      '<div class="b"><span class="sg-tag move">Di chuyển</span>1 lần quét</div></div>' + inner + '</div>';
+  const sum = L.tab === 'all' ? ksSum(ks) : '';   // Log tracking: không có thông tin hợp đồng
+  if (r.kind === 'gap') {
+    const head = '<div class="lr sg gap' + (isOngoing(r) ? ' ongo' : '') + act + (inner ? ' has-ks' : '') + '" data-id="' + r.id + '"><span class="ic gp">' + ic('wifiOff', 'sm') + '</span>';
+    if (isOngoing(r))   // đang mất tín hiệu, chưa có lại: mốc quét gần nhất · tọa độ gần nhất · Mất tín hiệu
+      return head + '<span class="tm">' + r.end + '</span><div class="body">' +
+        '<div class="a"><span class="mono">' + coord([r.from.lat, r.from.lng]) + '</span><b>Mất tín hiệu</b>' + sum + '</div>' +
+        '<div class="b">Từ tín hiệu gần nhất ' + hm(r.from.time) + ' · chưa có lại · không nhận được log mốc ' + marksTxt(r) + '</div></div>' + inner + '</div>';
+    // đã có lại: từ log trước (tín hiệu gần nhất) → log sau (có lại), kèm các mốc 5 phút không nhận được log
+    return head + '<span class="tm rng">' + hm(r.from.time) + '<i>→</i>' + hm(r.to.time) + '</span><div class="body">' +
+      '<div class="a"><b>Mất tín hiệu</b><span class="gp-n">' + durTxt(mins(r.to.time) - mins(r.from.time)) + ' · lỡ ' + r.count + ' lần quét</span>' + sum + '</div>' +
+      '<div class="b">Không nhận được log mốc ' + marksTxt(r) + ' · có lại ' + hm(r.to.time) + (r.to.open ? ' (mở app)' : '') + gapDistTxt(r) + '</div></div>' + inner + '</div>';
   }
-  if (r.kind === 'stop') {
-    const live = isLive(r);
-    return '<div class="lr sg stop' + act + (inner ? ' has-ks' : '') + '" data-id="' + r.id + '"><span class="ic stp">' + ic(r.idle ? 'coffee' : 'pin', 'sm') + '</span>' +
-      '<span class="tm rng">' + hm2(r.start) + '<i>→</i>' + (live ? 'nay' : hm2(r.end)) + '</span><div class="body">' +
-      '<div class="a"><b>' + (live ? 'Đang đứng yên ' : 'Đứng yên ') + dur(segMin(r)) + '</b>' + (r.idle ? '<span class="sg-tag idle">Tạm nghỉ</span>' : '') + sum + '</div>' +
-      '<div class="b"><span class="mono">' + coord([r.lat, r.lng]) + '</span> · ' + r.count + ' lần quét gộp</div></div>' + inner + '</div>';
-  }
-  return '<div class="lr sg gap' + act + (inner ? ' has-ks' : '') + '" data-id="' + r.id + '"><span class="ic gp">' + ic('wifiOff', 'sm') + '</span>' +
-    '<span class="tm rng">' + hm2(r.start) + '<i>→</i>' + hm2(r.end) + '</span><div class="body">' +
-    '<div class="a"><b>Mất tín hiệu ' + dur(segMin(r)) + '</b>' + sum + '</div><div class="b">Không nhận được tọa độ · vị trí cuối <span class="mono">' + coord([r.lat, r.lng], 5) + '</span></div></div>' + inner + '</div>';
+  const tags = (r.open ? '<span class="fl-tag op" data-tip="Log gửi ngay khi mở MobiQC (ngoài mốc 5 phút)">' + ic('play', 'xs') + 'Mở app</span>' : '') + (r.first ? '<span class="fl-tag st">' + ic('flag', 'xs') + flLabel({ first: true, day: r.day }) + '</span>' : '') + (r.last ? '<span class="fl-tag en">' + ic('target', 'xs') + flLabel({ day: r.day }) + '</span>' : '');
+  return '<div class="lr sg scan' + act + (inner ? ' has-ks' : '') + (r.first || r.last ? ' fl' : '') + '" data-id="' + r.id + '"><span class="ic trk"><i style="background:' + (r.first ? '#16a34a' : r.last ? '#0f172a' : '#2563eb') + '"></i></span>' +
+    '<span class="tm">' + r.time + '</span><div class="body"><div class="a"><span class="mono">' + coord([r.lat, r.lng]) + '</span>' + sum + '</div>' +
+    '<div class="b">' + tags + dPrevText(r) + '</div></div>' + inner + '</div>';
 }
-// ===== Tab Tất cả: gộp Log tracking (sau gộp) + Log KS theo thời gian =====
-// Phiếu KS gắn vào đoạn tracking chứa thời điểm cập nhật (cùng QC, cùng ngày) → thấy ngay lúc cập nhật KS QC đang ở đâu
+// ===== Tab Tất cả: lần quét tracking + Log KS theo thời gian =====
+// Phiếu KS gắn vào lần quét gần thời điểm cập nhật nhất (cùng QC, cùng ngày) → "tọa độ có cập nhật hợp đồng"
 // Chỉ mục lần quét tracking theo QC + ngày (tăng dần thời gian), dựng 1 lần
 const _scanIdx = new Map();
+// Mất tín hiệu = nét đứt đỏ nối điểm cuối cùng nhận tín hiệu → điểm ghi nhận tín hiệu trở lại (Hieu 07/10)
+// → lần quét không có tọa độ chỉ được tính khi nằm giữa 2 lần có tọa độ trong ngày; trước lần đầu / sau lần cuối có tín hiệu: không có sóng thì bỏ qua
+// Hôm nay đang mất tín hiệu, chưa có lại (Hieu 07/10) → 2 dòng: dòng tín hiệu ghi nhận gần nhất + dòng Mất tín hiệu (thời gian quét gần nhất, tọa độ gần nhất);
+// có lại tín hiệu → dòng Mất tín hiệu tính từ thời điểm có tín hiệu gần nhất đến khi có lại, bản đồ nối nét đứt đỏ 2 điểm
+const _winIdx = new Map();
+function inWin(r) {
+  if (r.type !== 'tracking' || r.status !== 'offline') return true;
+  const k = r.email + '|' + r.day;
+  let w = _winIdx.get(k);
+  if (!w) { const f = scanIdx(r.email, r.day).filter(p => p.status !== 'offline'); w = f.length ? [f[0].time, f[f.length - 1].time] : ['99', '']; _winIdx.set(k, w); }
+  return r.time > w[0] && (r.time < w[1] || r.day === TODAY);
+}
+const isOngoing = r => r.kind === 'gap' && !r.to && r.day === TODAY;
 function scanIdx(email, day) {
   if (!_scanIdx.size) { LOGS.forEach(r => { if (r.type !== 'tracking') return; const k = r.email + '|' + r.day; if (!_scanIdx.has(k)) _scanIdx.set(k, []); _scanIdx.get(k).push(r); }); _scanIdx.forEach(a => a.sort((x, y) => x.time.localeCompare(y.time))); }
   return _scanIdx.get(email + '|' + day) || [];
 }
 function allData() {
-  const segs = segsAsc(), ks = logFiltered().filter(r => r.type === 'ks');
-  const nest = new Map(), loose = [];
+  const segs = segsAsc(), ks = ksAll();
+  const rowOf = new Map(); segs.forEach(r => { if (r.kind === 'scan') rowOf.set(r.id, r); });
+  const gapsOf = new Map(); segs.forEach(r => { if (r.kind !== 'gap') return; const k = r.email + '|' + r.day; if (!gapsOf.has(k)) gapsOf.set(k, []); gapsOf.get(k).push(r); });
+  const nest = new Map(), loose = [], noSig = new Set();
   ks.forEach(k => {
-    const t = secs(k.time);
-    let host = null;
-    for (const sg of segs) {
-      if (sg.email !== k.email || sg.day !== k.day) continue;
-      if (secs(sg.start) <= t) host = sg; else if (host) break;
-    }
-    if (host && t <= secs(host.end) + 60) { if (!nest.has(host.id)) nest.set(host.id, []); nest.get(host.id).push(k); }
-    else loose.push(k);
+    const a = scanIdx(k.email, k.day); if (!a.length) { loose.push(k); return; }
+    const t = secs(k.time); let lo = 0, hi = a.length - 1;
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (secs(a[mid].time) < t) lo = mid + 1; else hi = mid; }
+    let j = lo; if (j > 0 && Math.abs(secs(a[j - 1].time) - t) <= Math.abs(secs(a[j].time) - t)) j--;   // log gần thời điểm cập nhật nhất
+    // log gần nhất lệch quá 2,5 phút mà phiếu nằm trong khoảng mất tín hiệu → gắn vào dòng Mất tín hiệu; log bị bộ lọc ẩn → phiếu đứng riêng
+    const g = Math.abs(secs(a[j].time) - t) > SCAN_MIN * 30 ? (gapsOf.get(k.email + '|' + k.day) || []).find(r => t > secs(r.from.time) && (!r.to || t < secs(r.to.time))) : null;
+    const row = g || rowOf.get(a[j].id);
+    if (row) { if (!nest.has(row.id)) nest.set(row.id, []); nest.get(row.id).push(k); } else loose.push(k);
   });
-  nest.forEach(a => a.sort((x, y) => y.time.localeCompare(x.time)));
-  // Khoảng cách vị trí cập nhật KS ↔ vị trí QC cùng thời điểm (đoạn nối 2 lần quét liền trước / liền sau); null = lúc đó không có tọa độ tracking
+  nest.forEach(x => x.sort((p, q) => q.time.localeCompare(p.time)));
+  // Vị trí cập nhật KS ↔ lộ trình tracking cùng lúc (đoạn nối 2 lần quét liền trước / liền sau); null = lúc đó không có tọa độ tracking
   const dist = new Map();
   ks.forEach(k => {
     const a = scanIdx(k.email, k.day); if (!a.length) return;
@@ -1947,15 +2237,18 @@ function allData() {
     const p0 = a[i], p1 = a[i + 1];
     dist.set(k.id, !p0 || p0.status === 'offline' ? null : distToSeg(k, p0, p1 && p1.status !== 'offline' ? p1 : null));
   });
-  const next = new Map();   // đoạn tracking kế tiếp (cùng QC, cùng ngày) → dựng đoạn lộ trình khi QC đang di chuyển
+  const next = new Map();
   segs.forEach((sg, i) => { const n2 = segs[i + 1]; if (n2 && n2.email === sg.email && n2.day === sg.day) next.set(sg.id, n2); });
   const key = r => iso(r.day) + (r.type === 'ks' ? r.time : r.start);
-  return { rows: [...segs, ...loose].sort((a, b) => key(b).localeCompare(key(a))), nest, next, dist };
+  return { rows: [...segs, ...(L.tab === 'all' ? loose : [])].sort((a, b) => key(b).localeCompare(key(a))), nest, next, dist, noSig };
 }
 const kindTag = loai => '<span class="kind ' + (loai === 'Hạ tầng' ? 'ht' : 'dv') + '">' + kindOf(loai) + '</span>';
 const ksDur = k => 'TG KS ' + (k.ksShow == null ? 'N/A' : k.ksShow + ' phút');
 // BR07: TG KS = TG hoàn tất − TG checkin; phiếu chưa hoàn tất → N/A, chưa có kết quả
-const ksState = k => k.ksShow == null ? ' · <span class="na-chip" title="Theo BR07: chưa hoàn tất nên Thời gian kiểm soát = N/A">Chưa hoàn tất</span>' : '';   // chỉ dùng trường có trong Log KS prod
+// Checkin chỉ có hiệu lực trong ngày (Hieu chốt 06/10): qua 00:00 checkin hết hiệu lực; phần tử chưa hoàn tất muốn cập nhật phải checkin lại, TG KS tính từ lần checkin mới
+const nextDay = d => { const [a, b, c] = d.split('/').map(Number), x = new Date(c, b - 1, a + 1); return pad(x.getDate()) + '/' + pad(x.getMonth() + 1) + '/' + x.getFullYear(); };
+const ciValid = k => k.day === TODAY ? 'còn hiệu lực đến hết ngày ' + k.day : 'hết hiệu lực lúc 00:00 ngày ' + nextDay(k.day);
+const ksState = k => k.ksShow == null ? ' · <span class="na-chip" title="Chưa hoàn tất (BR07: Thời gian kiểm soát = N/A) · checkin ' + ciValid(k) + ' · checkin chỉ có hiệu lực trong ngày, qua ngày muốn cập nhật phải checkin lại">Chưa hoàn tất' + (k.day === TODAY ? '' : ' · checkin hết hiệu lực') + '</span>' : '';   // chỉ dùng trường có trong Log KS prod
 // Tổng phần tử cập nhật KS trong 1 mốc tracking; bấm → chọn phần tử mới nhất (popup liệt kê đủ phần tử cùng tọa độ)
 // So vị trí cập nhật phiếu với ĐIỂM CHECKIN của chính phần tử (Đề xuất, cấu hình được):
 // ≤ CI_OK: tại điểm checkin · CI_OK–CI_FAR: cần xem (GPS trong nhà, tòa nhà lớn) · > CI_FAR: xa điểm checkin (đã rời nơi làm, VD cập nhật trên xe)
@@ -1974,7 +2267,8 @@ const ksSum = ks => {
   return '<button class="ksum' + (w === 2 ? ' bad' : w === 1 ? ' warn' : '') + '" data-ks="' + ks[0].id + '" title="Tổng phần tử cập nhật KS trong mốc này' + (nFar ? ' · ' + nFar + ' phần tử không tại điểm checkin' : '') + ' · bấm để xem chi tiết">' + ic('file', 'xs') + ks.length + ' phần tử</button>';
 };
 const ksDetail = k => '<div>&gt; Loại KS: ' + k.loaiKS + '</div><div>&gt; Indoor: ' + k.indoor + '</div><div>&gt; Thời gian cập nhật: ' + k.day + ' ' + k.time + '</div><div>&gt; Thời gian kiểm soát: ' + (k.ksShow == null ? 'N/A' : k.ksShow + ' phút') + '</div>' +
-  (k.ciTime ? '<div class="ksn-new">&gt; Thời gian checkin: ' + k.day + ' ' + k.ciTime + '</div><div class="ksn-new">&gt; Cách điểm checkin: ' + fmtM(ciDist(k)) + '</div>' : '');
+  (k.ciTime ? '<div class="ksn-new">&gt; Thời gian checkin: ' + k.day + ' ' + k.ciTime + '</div><div class="ksn-new">&gt; Cách điểm checkin: ' + fmtM(ciDist(k)) + '</div>' +
+    (k.ksShow == null ? '<div class="ksn-new">&gt; Hiệu lực checkin: ' + ciValid(k) + (k.day === TODAY ? '' : ' · cập nhật tiếp phải checkin lại') + '</div>' : '') : '');
 // Phần tử trong 1 mốc: gom theo tọa độ cập nhật (như "Danh sách hợp đồng liên quan" của Log KS); so vị trí cập nhật với điểm tracking cùng lúc
 // Khoảng cách (m) từ điểm p tới đoạn thẳng a–b (xấp xỉ phẳng, đủ chính xác trong vài trăm mét)
 function distToSeg(p, a, b) {
@@ -1991,8 +2285,8 @@ function ksNest(sg, list, nx, dist) {
   list.forEach(k => { const key = k.lat.toFixed(7) + ',' + k.lng.toFixed(7); if (!gm.has(key)) { gm.set(key, []); groups.push(gm.get(key)); } gm.get(key).push(k); });
   return '<div class="ksn-wrap">' + groups.map(g => {
     // so sánh chính nằm ở từng phần tử (với điểm checkin); chân khung chỉ ghi ngữ cảnh tracking lúc cập nhật
-    const d0 = dist ? dist.get(g[0].id) : undefined, gap = sg.kind === 'gap' || d0 === null, mv = sg.kind === 'move';
-    const ctx = gap ? '<span class="ksn-w">Mất tín hiệu tracking lúc cập nhật</span>' : mv ? '<span class="sg-tag move">Đang di chuyển</span>Cập nhật trên đường đi' : '';
+    const gap = sg.kind === 'gap', mv = false;   // phiếu gắn vào dòng Mất tín hiệu = lúc cập nhật tracking không có tọa độ; không còn phân loại Di chuyển / Đứng yên
+    const ctx = gap ? '<span class="ksn-w">Mất tín hiệu tracking lúc cập nhật</span>' : '';
     const foot = (groups.length > 1 ? '<b>' + g.length + ' phần tử cùng tọa độ</b>' + (ctx ? ' · ' : '') : '') + ctx;
     return '<div class="ksg' + (gap ? ' warn' : '') + '">' + g.map(ksItem).join('') +
       (foot ? '<div class="ksg-f">' + ic(gap ? 'wifiOff' : mv ? 'route' : 'pin', 'xs') + '<span>' + foot + '</span></div>' : '') + '</div>';
@@ -2005,47 +2299,48 @@ function ksItem(k) {
     '<div class="ksn-c">' + ciChip(k) + ksDur(k) + ksState(k) + '</div>' +
     '<div class="ksn-d">' + ksDetail(k) + '</div></div>';
 }
-function ksRow(k) {
+function ksRow(k, gapCtx) {   // gapCtx: phiếu cập nhật lúc mất tín hiệu tracking (dòng Mất tín hiệu đang ẩn ở chế độ mặc định)
   return '<div class="lr ksr' + (L.sel === k.id ? ' active' : '') + '" data-id="' + k.id + '"><span class="ic ks">' + ic('file', 'sm') + '</span>' +
     '<span class="tm">' + k.time + '</span><div class="body"><div class="a"><b class="ks-name">' + k.ptd + '</b>' + kindTag(k.loaiKS) + '</div>' +
-    '<div class="b ksr-c">' + ciChip(k) + ksDur(k) + ksState(k) + '</div><div class="ksr-d">' + ksDetail(k) + '</div></div></div>';
+    '<div class="b ksr-c">' + ciChip(k) + ksDur(k) + ksState(k) + '</div>' +
+    (gapCtx ? '<div class="b ksr-gap">' + ic('wifiOff', 'xs') + '<span>Không có tín hiệu tracking lúc cập nhật · không có tọa độ quét để gắn</span></div>' : '') +
+    '<div class="ksr-d">' + ksDetail(k) + '</div></div></div>';
 }
 // Thẻ minh họa quy tắc — đặt ngay đầu danh sách để thuyết trình
 function ruleCard() {
   if (L.ruleHidden) return '';
   return '<div class="rulecard">' +
-    '<div class="rc-h">' + ic('info', 'sm') + '<b>Quy tắc ghi nhận tọa độ</b><span class="muted">hệ thống quét 1 phút/lần</span><button class="icon-btn" id="ruleHide" title="Ẩn quy tắc">' + ic('eyeOff', 'sm') + '</button></div>' +
+    '<div class="rc-h">' + ic('info', 'sm') + '<b>Quy tắc ghi nhận tọa độ</b><span class="muted">mốc ' + SCAN_MIN + ' phút (mặc định, cấu hình được)</span><button class="icon-btn" id="ruleHide" title="Ẩn quy tắc">' + ic('eyeOff', 'sm') + '</button></div>' +
     '<div class="rc-rules">' +
-      '<div><span class="sg-tag move">Di chuyển</span><span>Cách điểm gốc ≥ ' + STOP_M + ' m → lưu &amp; hiển thị <b>1 dòng / phút</b></span></div>' +
-      '<div><span class="sg-tag stop">Đứng yên</span><span>Cách điểm gốc &lt; ' + STOP_M + ' m → <b>không tạo dòng mới</b>, chỉ kéo dài giờ kết thúc</span></div>' +
-      '<div><span class="sg-tag gap">Mất tín hiệu</span><span>Không nhận được tọa độ → <b>gộp thành 1 khoảng</b>, kéo dài tới khi có tín hiệu lại</span></div>' +
+      '<div><span class="sg-tag scan">Gửi log</span><span>MobiQC gửi tọa độ về CMS: <b>(1) ngay khi mở app</b>; <b>(2) khi app đang bật, ở mỗi phút chia hết cho ' + SCAN_MIN + '</b> (:00, :05, :10…). App tắt → không có dữ liệu. 1 log = 1 dòng; không gộp dòng, không tính đứng yên bao lâu</span></div>' +
+      '<div><span class="sg-tag gap">Mất tín hiệu</span><span>CMS tự tính: giữa 2 log liền nhau có mốc ' + SCAN_MIN + ' phút không nhận được log → 1 dòng Mất tín hiệu từ log trước đến log sau; bản đồ <b>nét đứt đỏ</b> nối 2 điểm. Hôm nay: qua mốc ' + GRACE + ' phút chưa có log → đang mất tín hiệu, Realtime Offline. Trước log đầu / sau log cuối của ngày đã qua: bỏ qua</span></div>' +
+      '<div><span class="sg-tag ks">Mặc định</span><span>Chỉ hiện <b>tọa độ có cập nhật hợp đồng</b> (log gần thời điểm cập nhật nhất) và <b>lần đầu / lần cuối</b> trong ngày; không hiện mất tín hiệu (trừ đang tiếp diễn); bản đồ chưa tải tọa độ. Log tracking: cùng các tọa độ đó, không có thông tin hợp đồng</span></div>' +
+      '<div><span class="sg-tag det">Chi tiết</span><span>Bật <b>Cho phép xem chi tiết log</b> ở ngày cần xem → hiện toàn bộ log và mất tín hiệu của ngày đó, cùng marker trên bản đồ</span></div>' +
     '</div>' +
-    '<div class="rc-ex"><div class="rc-ex-t">Ví dụ đồng bộ từng phút</div>' +
-      '<table><tr><th>Lần quét</th><th>So với điểm gốc</th><th>Danh sách hiển thị</th></tr>' +
-      '<tr><td>08:03</td><td>cách 08:02 ~70 m</td><td><span class="sg-tag move">Di chuyển</span>08:03</td></tr>' +
-      '<tr><td>08:04</td><td>cách 08:03 ~3 m</td><td><span class="sg-tag stop">Đứng yên</span>08:03 → 08:04 · 1 phút · 2 lần quét</td></tr>' +
-      '<tr><td>08:05</td><td>cách gốc ~2 m</td><td><i>không thêm dòng</i> · 08:03 → 08:05 · 2 phút · 3 lần quét</td></tr>' +
-      '<tr><td>08:41</td><td>vẫn &lt; ' + STOP_M + ' m</td><td>08:03 → 08:41 · 38 phút · 39 lần quét</td></tr>' +
-      '<tr><td>08:42</td><td>cách gốc ~75 m</td><td>chốt điểm dừng · <span class="sg-tag move">Di chuyển</span>08:42</td></tr></table>' +
-      '<div class="rc-ex-t" style="margin-top:10px">Ví dụ mất tín hiệu</div>' +
-      '<table><tr><th>Lần quét</th><th>Tình trạng</th><th>Danh sách hiển thị</th></tr>' +
-      '<tr><td>15:09</td><td>nhận tọa độ</td><td><span class="sg-tag move">Di chuyển</span>15:09</td></tr>' +
-      '<tr><td>15:10</td><td>không nhận được</td><td><span class="sg-tag gap">Mất tín hiệu</span>15:10 → 15:10 · 1 phút</td></tr>' +
-      '<tr><td>15:11</td><td>vẫn không nhận</td><td><i>không thêm dòng</i> · 15:10 → 15:11 · 2 phút</td></tr>' +
-      '<tr><td>15:21</td><td>vẫn không nhận</td><td>15:10 → 15:21 · 12 phút</td></tr>' +
-      '<tr><td>15:22</td><td>nhận lại tọa độ</td><td>chốt khoảng mất tín hiệu · so với vị trí cuối: ≥ ' + STOP_M + ' m → <span class="sg-tag move">Di chuyển</span>, &lt; ' + STOP_M + ' m → <span class="sg-tag stop">Đứng yên</span></td></tr></table>' +
-      '<div class="rc-note">So với <b>điểm gốc</b> (điểm bắt đầu đứng yên), không so với phút liền trước — để QC đi chậm vẫn được tính là di chuyển.</div>' +
+    '<div class="rc-ex v2"><div class="rc-ex-t">Ví dụ 1 buổi sáng</div>' +
+      '<table><tr><th>Giờ</th><th>MobiQC</th><th>Danh sách</th></tr>' +
+      '<tr><td>07:04</td><td>Mở app → gửi ngay</td><td>Lần đầu trong ngày · Mở app (hiện cả ở mặc định)</td></tr>' +
+      '<tr><td>07:05</td><td>Tới mốc chia hết cho 5 → gửi</td><td>Khi bật chi tiết log</td></tr>' +
+      '<tr><td>07:10–07:15</td><td>Mốc → gửi</td><td>Khi bật chi tiết log</td></tr>' +
+      '<tr><td>07:17</td><td>Tắt app</td><td>—</td></tr>' +
+      '<tr><td>07:20–07:30</td><td>Không gửi (app tắt)</td><td><span class="sg-tag gap">Mất tín hiệu</span> 07:15 → 07:33 · lỡ 3 lần quét</td></tr>' +
+      '<tr><td>07:33</td><td>Mở lại app → gửi ngay</td><td>Mở app · nét đứt đỏ 07:15 → 07:33</td></tr>' +
+      '<tr><td>10:00</td><td>Mốc → gửi · cập nhật hợp đồng 10:02</td><td>Hiện cả ở mặc định</td></tr></table>' +
+      '<div class="rc-note">Phiếu KS gắn vào log gần thời điểm cập nhật nhất (10:02 → log 10:00). Cập nhật phiếu phải mở MobiQC nên lúc đó luôn có log. Cách lần quét trước = khoảng cách giữa 2 log liền nhau, chỉ là số đo.</div>' +
     '</div></div>';
 }
 
 // ----- Map -----
-// light = true: chỉ vẽ lại lộ trình + marker theo khung nhìn mới (khi kéo / phóng to), giữ nguyên popup, chú thích, thanh phát lại
+// Tab Tất cả / Log tracking: mặc định KHÔNG tải tọa độ; chỉ vẽ các ngày bật "Cho phép xem chi tiết log" (lần quét, lộ trình, mất tín hiệu = nét đứt đỏ)
+// và bản ghi đang chọn ở danh sách. Tab Log KS: ghim prod như cũ
+// light = true: chỉ vẽ lại theo khung nhìn mới (khi kéo / phóng to), giữ nguyên popup, chú thích, thanh phát lại
 function renderLogMap(light = false) {
   const map = $('lgMap'), W = map.clientWidth, H = map.clientHeight;
   const ov = $('lgOv'); ov.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
   const V = MV.log; applyBase('lgMap', V);
   const toXY = (lat, lng) => proj(V, lat, lng);
   const px = r => { const p = toXY(r.lat, r.lng); return [p.x / 100 * W, p.y / 100 * H, p]; };
+  const pc = q => ({ x: q[0] / W * 100, y: q[1] / H * 100 });
   if (!light) renderLogCtx();
   if (!effEmails().length) {
     ov.innerHTML = ''; $('lgMk').innerHTML = ''; $('lgInsp').innerHTML = ''; $('lgPlayer').innerHTML = '';
@@ -2053,159 +2348,133 @@ function renderLogMap(light = false) {
     $('lgEmpty').innerHTML = '<div class="map-empty"><div>' + ic('route', 'sm') + (L.emails.length ? 'Chọn 1 QC ở danh sách bên trái để hiển thị lộ trình' : 'Chọn QC để hiển thị lộ trình &amp; log kiểm soát') + '</div></div>';
     return;
   }
-  $('lgEmpty').innerHTML = ''; $('lgLegend').style.display = '';
-  const rows = logFiltered().filter(r => L.tab === 'ks' || !L.hidden.has(r.day));
-  // Biểu tượng không đè nhau: Bắt đầu / Kết thúc / phần tử KS là nhãn nhỏ gắn SÁT NGOÀI vòng Đứng yên (không che số phút);
-  // thử 8 vị trí quanh vòng tròn, chọn chỗ không chồng lên vòng tròn / nhãn khác
-  const stopSz = r => Math.max(22, Math.min(44, 18 + Math.sqrt(segMin(r)) * 3));
-  const obs = [], pinJobs = [], stops = [], stopPos = new Map();
-  const ovl = (a, b) => Math.max(0, Math.min(a[2], b[2]) - Math.max(a[0], b[0])) * Math.max(0, Math.min(a[3], b[3]) - Math.max(a[1], b[1]));
-  const placeB = (seg, pt, sides, bw, bh) => {
-    if (!(seg && seg.kind === 'stop' && !L.hidden.has(seg.day))) { obs.push([pt[0] - bw / 2, pt[1] - bh / 2, pt[0] + bw / 2, pt[1] + bh / 2]); return pt[2]; }
-    const sp = stopPos.get(seg.id) || pt, r = stopSz(seg) / 2 + 2, cx = sp[0], cy = sp[1], g = .7071;
-    const C = { l: [cx - r - bw / 2, cy], r: [cx + r + bw / 2, cy], t: [cx, cy - r - bh / 2], b: [cx, cy + r + bh / 2],
-      tl: [cx - r * g - bw / 2, cy - r * g - bh / 2], tr: [cx + r * g + bw / 2, cy - r * g - bh / 2], bl: [cx - r * g - bw / 2, cy + r * g + bh / 2], br: [cx + r * g + bw / 2, cy + r * g + bh / 2] };
-    let best = null, bs = Infinity;
-    sides.forEach(k => {
-      const [x, y] = C[k], box = [x - bw / 2, y - bh / 2, x + bw / 2, y + bh / 2];
-      let sc = obs.reduce((t, o) => t + ovl(box, o), 0);
-      if (box[0] < 0 || box[2] > W || box[1] < 0 || box[3] > H) sc += 5000;
-      if (sc < bs - 1) { bs = sc; best = [x, y, box]; }
-    });
-    obs.push(best[2]);
-    return { x: best[0] / W * 100, y: best[1] / H * 100 };
-  };
+  $('lgLegend').style.display = '';
   const badge = (pos, cls, inner, o) => '<div class="mkb ' + cls + (o.sel ? ' is-sel' : '') + '" style="left:' + pos.x + '%;top:' + pos.y + '%" ' + o.data + ' data-tip="' + o.tip + '">' + inner + (o.label ? '<div class="ks-lbl">' + o.label + '</div>' : '') + '</div>';
-  const groups = {};
-  trackPts().forEach(r => { (groups[r.email + '|' + r.day] = groups[r.email + '|' + r.day] || []).push(r); });
-
+  const redGap = (a, b) => '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="#fff" stroke-width="5" stroke-linecap="round"/>' +
+    '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>';
+  const gapTip = r => isOngoing(r)
+    ? '<b>Mất tín hiệu</b> · ' + r.day.slice(0, 5) + ' · đang tiếp diễn<br>Tín hiệu gần nhất ' + hm(r.from.time) + ' · chưa có lại<br><span class=m>Không nhận được log mốc ' + marksTxt(r) + '</span>'
+    : '<b>Mất tín hiệu</b> · ' + r.day.slice(0, 5) + ' · ' + hm(r.from.time) + ' → ' + hm(r.to.time) + '<br>Lỡ ' + r.count + ' lần quét: ' + marksTxt(r) + '<br><span class=m>Có lại ' + hm(r.to.time) + (r.to.open ? ' (mở app)' : '') + gapDistTxt(r) + '</span>';
+  const gapMid = r => { const a = r.from ? px(r.from) : null, b = r.to ? px(r.to) : null; return a && b ? [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2] : (a || b || px(r)); };
   let svg = '<defs><marker id="arw" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>';
   let html = '';
-  Object.values(groups).forEach(g => {
-    const col = dayColor(g[0].day);
-    const pts = g.map(r => px(r));
-    // đường lộ trình: nét liền; đoạn mất tín hiệu: nét đứt xám
-    const line = (a, b, gap) => '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + (gap ? '#94a3b8' : col) + '" stroke-width="' + (gap ? 2.5 : 3) + '"' + (gap ? ' stroke-dasharray="6 5"' : '') + ' stroke-linecap="round"/>';
-    svg += '<polyline points="' + pts.map(p => p[0] + ',' + p[1]).join(' ') + '" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round" opacity=".8"/>';
-    for (let i = 1; i < pts.length; i++) svg += line(pts[i - 1], pts[i], g[i].kind === 'gap' || g[i - 1].kind === 'gap');
-    for (let i = 6; i < pts.length; i += 12) {
-      if (g[i].kind !== 'move' || g[i - 1].kind !== 'move') continue;
-      const a = pts[i - 1], b = pts[i];
-      svg += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + ((a[0] + b[0]) / 2) + '" y2="' + ((a[1] + b[1]) / 2) + '" stroke="' + col + '" stroke-width="3" marker-end="url(#arw)"/>';
-    }
-    g.forEach((r, i) => {
-      const p = pts[i][2], sel = L.sel === r.id ? ' is-sel' : '';
-      if (r.kind === 'stop') {
-        stops.push({ r, x: pts[i][0], y: pts[i][1], rad: stopSz(r) / 2, col, sel });   // vẽ sau, để tách các vòng trùng chỗ
-      } else if (r.kind === 'gap') {
-        obs.push([pts[i][0] - 11, pts[i][1] - 11, pts[i][0] + 11, pts[i][1] + 11]);
-        html += '<div class="gapm' + sel + '" data-id="' + r.id + '" style="left:' + p.x + '%;top:' + p.y + '%" data-tip="<b>Mất tín hiệu ' + dur(segMin(r)) + '</b><br>' + r.start.slice(0, 5) + ' → ' + r.end.slice(0, 5) + '">' + ic('wifiOff', 'xs') + '</div>';
-      } else if (i > 0 && i < g.length - 1) {
-        html += '<div class="dotm' + sel + '" data-id="' + r.id + '" style="left:' + p.x + '%;top:' + p.y + '%;background:' + col + '" data-tip="<b>' + r.day.slice(0, 5) + ' ' + r.time + '</b> · Di chuyển<br><span class=m>' + coord([r.lat, r.lng]) + '</span>"></div>';
+  const s = L.sel && recById(L.sel);
+  const gapPos = r => {
+    const m = gapMid(r), a = r.from ? px(r.from) : null, b = r.to ? px(r.to) : null;
+    if (a && b && Math.hypot(a[0] - b[0], a[1] - b[1]) >= 18) return pc(m);
+    const o = [m[0] + 17, m[1] - 15];
+    svg += '<line x1="' + m[0] + '" y1="' + m[1] + '" x2="' + o[0] + '" y2="' + o[1] + '" stroke="#dc2626" stroke-width="1.3" stroke-dasharray="2 2"/><circle cx="' + m[0] + '" cy="' + m[1] + '" r="2.6" fill="#dc2626"/>';
+    return pc(o);
+  };
+  if (L.tab !== 'ks') {
+    const groups = {};
+    trackPts().forEach(r => { (groups[r.email + '|' + r.day] = groups[r.email + '|' + r.day] || []).push(r); });
+    Object.values(groups).forEach(g => {
+      const col = dayColor(g[0].day), fx = g.filter(r => r.kind === 'scan'), P = fx.map(px);
+      if (P.length > 1) svg += '<polyline points="' + P.map(p => p[0] + ',' + p[1]).join(' ') + '" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round" opacity=".8"/>';
+      let nA = 0;
+      for (let i = 1; i < fx.length; i++) {
+        const a = P[i - 1], b = P[i];
+        if (fx[i].afterGap) { svg += redGap(a, b); continue; }   // mất tín hiệu: nét đứt đỏ nối vị trí cuối → vị trí có lại
+        svg += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" stroke="' + col + '" stroke-width="3" stroke-linecap="round"/>';
+        if (Math.hypot(b[0] - a[0], b[1] - a[1]) > 46 && nA++ % 2 === 0) svg += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + ((a[0] + b[0]) / 2) + '" y2="' + ((a[1] + b[1]) / 2) + '" stroke="' + col + '" stroke-width="3" marker-end="url(#arw)"/>';
       }
-    });
-    const s0 = g[0], e0 = g[g.length - 1];
-    pinJobs.push([s0, pts[0], 'st', ic('flag'), { sel: L.sel === s0.id, data: 'data-id="' + s0.id + '"', tip: '<b>Bắt đầu · ' + s0.day.slice(0, 5) + '</b><br>' + s0.start }]);
-    if (g.length > 1) pinJobs.push([e0, pts[pts.length - 1], 'en', ic('target'), { sel: L.sel === e0.id, data: 'data-id="' + e0.id + '"', tip: '<b>' + (isLive(e0) ? 'Vị trí hiện tại' : 'Kết thúc') + ' · ' + e0.day.slice(0, 5) + '</b><br>' + e0.end }]);
-  });
-  // Vòng Đứng yên trùng chỗ (cùng hoặc khác ngày): tách đều quanh tâm cụm, nối về đúng tọa độ bằng nét đứt mảnh
-  (() => {
-    const n = stops.length, par = stops.map((_, i) => i), f = i => par[i] === i ? i : (par[i] = f(par[i]));
-    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
-      const a = stops[i], c = stops[j];
-      if (Math.hypot(a.x - c.x, a.y - c.y) < (a.rad + c.rad) * .85) par[f(i)] = f(j);
-    }
-    const cl = {}; stops.forEach((s2, i) => (cl[f(i)] = cl[f(i)] || []).push(s2));
-    Object.values(cl).forEach(c => {
-      if (c.length === 1) { c[0].X = c[0].x; c[0].Y = c[0].y; return; }
-      c.sort((a, b2) => (iso(a.r.day) + a.r.start).localeCompare(iso(b2.r.day) + b2.r.start));
-      const mx = c.reduce((t, s2) => t + s2.x, 0) / c.length, my = c.reduce((t, s2) => t + s2.y, 0) / c.length, maxr = Math.max(...c.map(s2 => s2.rad));
-      const R = c.length === 2 ? maxr + 3 : Math.max(maxr + 4, (maxr + 3) / Math.sin(Math.PI / c.length));
-      c.forEach((s2, i) => {
-        const a = c.length === 2 ? (i ? 0 : Math.PI) : -Math.PI / 2 + i * 2 * Math.PI / c.length;
-        s2.X = mx + R * Math.cos(a); s2.Y = my + R * Math.sin(a);
-        svg += '<line x1="' + s2.x + '" y1="' + s2.y + '" x2="' + s2.X + '" y2="' + s2.Y + '" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>' +
-          '<circle cx="' + s2.x + '" cy="' + s2.y + '" r="3.2" fill="' + s2.col + '" stroke="#fff" stroke-width="1.5"/>';
+      // Từng lần quét = 1 chấm màu theo ngày. QC ở 1 chỗ nhiều lần quét (tọa độ chỉ lệch vài mét GPS) → các chấm chồng khít lên nhau ở mức phóng hiện tại
+      // → gom thành 1 chấm + số lần quét trùng vị trí (chỉ là cách vẽ; không tính thời gian đứng yên). Phóng to tới mức các điểm cách nhau ≥ 9 px thì tách ra
+      const cl = [];
+      fx.forEach((r, i) => { const q = P[i]; let c = cl.find(c => Math.hypot(c.x - q[0], c.y - q[1]) < 9); if (!c) cl.push(c = { x: q[0], y: q[1], p: q[2], rs: [] }); c.rs.push(r); });
+      cl.forEach(c => {
+        const rs = c.rs, n = rs.length, pick = rs.find(r => r.id === L.sel) || rs[n - 1], sel = rs.some(r => r.id === L.sel);
+        const times = n <= 6 ? rs.map(r => hm(r.time)).join(', ') : rs.slice(0, 3).map(r => hm(r.time)).join(', ') + ' … ' + rs.slice(-2).map(r => hm(r.time)).join(', ');
+        const tip = n > 1 ? '<b>' + n + ' lần quét trùng vị trí</b> · ' + rs[0].day.slice(0, 5) + '<br>' + times + '<br><span class=m>' + coord([rs[0].lat, rs[0].lng]) + ' · bấm để xem lần quét ' + hm(pick.time) + '</span>'
+          : '<b>' + rs[0].day.slice(0, 5) + ' ' + rs[0].time + '</b> · lần quét<br><span class=m>' + coord([rs[0].lat, rs[0].lng]) + '</span>';
+        if (rs.some(r => !r.first && !r.last)) html += '<div class="dotm' + (sel ? ' is-sel' : '') + '" data-id="' + pick.id + '" style="left:' + c.p.x + '%;top:' + c.p.y + '%;background:' + col + '" data-tip="' + tip + '"></div>';
+        if (n > 1) html += '<div class="dotn' + (sel ? ' is-sel' : '') + '" data-id="' + pick.id + '" style="left:' + c.p.x + '%;top:' + c.p.y + '%;--c:' + col + '" data-tip="' + tip + '">' + n + '</div>';
       });
+      g.filter(r => r.kind === 'gap').forEach(r => { const m = gapPos(r); html += '<div class="gapm' + (L.sel === r.id ? ' is-sel' : '') + '" data-id="' + r.id + '" style="left:' + m.x + '%;top:' + m.y + '%" data-tip="' + gapTip(r) + '">' + ic('wifiOff', 'xs') + '</div>'; });
+      // Ghi nhận tọa độ lần đầu / lần cuối trong ngày (trùng chỗ, VD ở nhà cả đêm → đặt lệch 2 bên)
+      const f = fx.find(r => r.first), l = fx.find(r => r.last);
+      const pf = f && px(f), pl = l && l !== f ? px(l) : null, near = pf && pl && Math.hypot(pf[0] - pl[0], pf[1] - pl[1]) < 28;
+      if (f) html += badge(pc(near ? [pf[0] - 14, pf[1]] : pf), 'st', ic('flag'), { sel: L.sel === f.id, data: 'data-id="' + f.id + '"', tip: '<b>' + flLabel(f) + '</b><br>' + f.day + ' ' + f.time });
+      if (pl) html += badge(pc(near ? [pl[0] + 14, pl[1]] : pl), 'en', ic('target'), { sel: L.sel === l.id, data: 'data-id="' + l.id + '"', tip: '<b>' + flLabel({ day: l.day }) + '</b><br>' + l.day + ' ' + l.time });
     });
-    stops.forEach(s2 => {
-      const r = s2.r, m = segMin(r), sz = s2.rad * 2;
-      stopPos.set(r.id, [s2.X, s2.Y]);
-      obs.push([s2.X - s2.rad, s2.Y - s2.rad, s2.X + s2.rad, s2.Y + s2.rad]);
-      html += '<div class="stopm' + s2.sel + (r.idle ? ' idle' : '') + (isLive(r) ? ' live' : '') + '" data-id="' + r.id + '" style="left:' + (s2.X / W * 100) + '%;top:' + (s2.Y / H * 100) + '%;width:' + sz + 'px;height:' + sz + 'px;--c:' + s2.col + '" data-tip="<b>Đứng yên ' + dur(m) + '</b><br>' + r.day + ' · ' + r.start.slice(0, 5) + ' → ' + r.end.slice(0, 5) + '<br><span class=m>' + r.count + ' lần quét gộp</span>"><span>' + (m >= 60 ? Math.floor(m / 60) + 'h' + pad(m % 60) : m + '′') + '</span></div>';
-    });
-  })();
-  pinJobs.forEach(([seg, pt, cls, icon, o]) => { html += badge(placeB(seg, pt, ['l', 'tl', 'bl', 't', 'b', 'r', 'tr', 'br'], 20, 20), cls, icon, o); });
-  const ksList = rows.filter(r => r.type === 'ks' && ksMatch(r));
-  if (L.tab === 'all') {
-    // Tab Tất cả: giữ ghim Log KS; phần tử cùng tọa độ gom thành 1 ghim, số trên ghim = tổng phần tử tại tọa độ đó
-    const gm = new Map(), host = new Map();
-    allData().nest.forEach((ks, sid) => { const sg = SEGMAP.get(sid); ks.forEach(k => host.set(k.id, sg)); });
-    ksList.forEach(r => { const key = r.email + '|' + r.lat.toFixed(7) + '|' + r.lng.toFixed(7); if (!gm.has(key)) gm.set(key, []); gm.get(key).push(r); });
-    gm.forEach(g => {
-      const r0 = g[0], sg = host.get(r0.id), cur = g.find(x => x.id === L.sel), n = g.length;
-      const tip = '<b>' + n + ' phần tử</b> · ' + r0.day + (sg && sg.kind === 'move' ? ' · cập nhật khi đang di chuyển' : '') + '<br>' + g.slice().reverse().map(x => x.time.slice(0, 5) + ' · ' + x.ptd).join('<br>');
-      const o = { sel: !!cur, data: 'data-id="' + (cur ? cur.id : r0.id) + '"', tip, label: cur ? (n > 1 ? n + ' phần tử' : 'KS ' + cur.time.slice(0, 5)) : '' };
-      if (sg && sg.kind === 'stop' && !L.hidden.has(sg.day)) {
-        // phần tử tại điểm đứng yên: nhãn xanh (biểu tượng ghim + tổng phần tử) gắn sát vòng tròn
-        html += badge(placeB(sg, px(sg), ['r', 'tr', 'br', 't', 'b', 'l', 'tl', 'bl'], 22 + 7 * String(n).length, 20), 'ks', ic('pin', 'xs') + n, o);
-      } else {
-        // phần tử cập nhật khi đang di chuyển / ngoài điểm đứng yên: ghim Log KS cỡ nhỏ tại đúng tọa độ cập nhật, nằm trên lộ trình
-        const q = px(r0); obs.push([q[0] - 9, q[1] - 26, q[0] + 9, q[1]]);
-        html += '<div class="mk ksmk mini' + (cur ? ' is-sel' : '') + '" style="left:' + q[2].x + '%;top:' + q[2].y + '%;z-index:' + (cur ? 9 : 7) + '" ' + o.data + ' data-tip="' + tip + '">' +
-          (o.label ? '<div class="ks-lbl">' + o.label + '</div>' : '') + (n > 1 ? gpinN('#1677ff', n) : gpin('#1677ff')) + '</div>';
+    // Tab Tất cả: vị trí cập nhật hợp đồng của các ngày đang xem chi tiết (cùng tọa độ gom 1 ghim, số = tổng phần tử)
+    if (L.tab === 'all') {
+      const gm = new Map();
+      ksAll().filter(k => L.detail.has(k.day)).forEach(r => { const key = r.email + '|' + r.lat.toFixed(7) + '|' + r.lng.toFixed(7); if (!gm.has(key)) gm.set(key, []); gm.get(key).push(r); });
+      gm.forEach(g => {
+        const r0 = g[0], cur = g.find(x => x.id === L.sel), n = g.length, q = px(r0);
+        const tip = '<b>' + n + ' phần tử</b> · ' + r0.day + '<br>' + g.slice().reverse().map(x => x.time.slice(0, 5) + ' · ' + x.ptd).join('<br>');
+        html += '<div class="mk ksmk mini' + (cur ? ' is-sel' : '') + '" style="left:' + q[2].x + '%;top:' + q[2].y + '%;z-index:' + (cur ? 9 : 7) + '" data-id="' + (cur ? cur.id : r0.id) + '" data-tip="' + tip + '">' +
+          (cur ? '<div class="ks-lbl">' + (n > 1 ? n + ' phần tử' : 'KS ' + cur.time.slice(0, 5)) + '</div>' : '') + (n > 1 ? gpinN('#1677ff', n) : gpin('#1677ff')) + '</div>';
+      });
+    }
+    // Bản ghi đang chọn thuộc ngày chưa bật chi tiết: chỉ vẽ đúng bản ghi đó (không tải các tọa độ khác)
+    if (s && !L.detail.has(s.day)) {
+      if (s.type === 'tracking' && s.kind === 'scan') {
+        const p = px(s)[2];
+        html += '<div class="mk ksmk is-sel" style="left:' + p.x + '%;top:' + p.y + '%;z-index:9" data-id="' + s.id + '"><div class="ks-lbl">' + (s.first || s.last ? flLabel(s) : 'Lần quét') + ' · ' + s.time.slice(0, 5) + '</div>' + gpin(dayColor(s.day)) + '</div>';
+      } else if (s.type === 'tracking' && s.kind === 'gap') {
+        const a = s.from ? px(s.from) : null, b = s.to ? px(s.to) : null, m = gapPos(s);
+        if (a && b) svg += redGap(a, b);
+        if (a) html += '<div class="dotm is-sel" style="left:' + a[2].x + '%;top:' + a[2].y + '%;background:#64748b" data-tip="Vị trí cuối trước khi mất tín hiệu · ' + s.from.time + '"></div>';
+        if (b) html += '<div class="dotm is-sel" style="left:' + b[2].x + '%;top:' + b[2].y + '%;background:#16a34a" data-tip="Có lại tọa độ · ' + s.to.time + '"></div>';
+        html += '<div class="gapm is-sel" data-id="' + s.id + '" style="left:' + m.x + '%;top:' + m.y + '%" data-tip="' + gapTip(s) + '">' + ic('wifiOff', 'xs') + '</div>';
+      } else if (s.type === 'ks' && L.tab === 'all') {
+        const p = px(s)[2];
+        html += '<div class="mk ksmk mini is-sel" style="left:' + p.x + '%;top:' + p.y + '%;z-index:9" data-id="' + s.id + '"><div class="ks-lbl">KS ' + s.time.slice(0, 5) + '</div>' + gpin('#1677ff') + '</div>';
       }
-    });
-  } else ksList.forEach((r, i) => {
+    }
+    // Dòng Mất tín hiệu đang chọn: ghi nhãn 2 đầu nét đứt đỏ (điểm có tín hiệu gần nhất → điểm có lại) cho dễ hình dung
+    if (s && s.type === 'tracking' && s.kind === 'gap') {
+      const lbl = (pt, txt, cls) => { const q = px(pt)[2]; html += '<div class="gp-lbl ' + cls + '" style="left:' + q.x + '%;top:' + q.y + '%">' + txt + '</div>'; };
+      if (s.from) lbl(s.from, (isOngoing(s) ? 'Tín hiệu gần nhất ' : 'Tín hiệu cuối ') + hm(s.from.time), 'a');
+      if (s.to) lbl(s.to, 'Có lại ' + hm(s.to.time), 'b');
+    }
+    // Phần tử đang chọn (tab Tất cả): điểm checkin, nét đứt tới nơi cập nhật, ghi khoảng cách (màu theo mức)
+    if (L.tab === 'all' && s && s.type === 'ks' && s.ciLat != null) {
+      const a = px({ lat: s.ciLat, lng: s.ciLng }), b2 = px(s), d = ciDist(s), t = ciTier(d), col = { ok: '#16a34a', warn: '#d97706', bad: '#dc2626' }[t];
+      svg += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b2[0] + '" y2="' + b2[1] + '" stroke="#fff" stroke-width="5" stroke-linecap="round"/>' +
+        '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b2[0] + '" y2="' + b2[1] + '" stroke="' + col + '" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>';
+      html += '<div class="mkb ci ' + t + '" style="left:' + a[2].x + '%;top:' + a[2].y + '%;z-index:9" data-tip="<b>Checkin · ' + s.ptd + '</b><br>' + s.day + ' ' + s.ciTime + '">' + ic('flag', 'xs') + '</div>';
+      if (Math.hypot(a[0] - b2[0], a[1] - b2[1]) > 46) html += '<div class="ci-dist ' + t + '" style="left:' + (a[2].x + b2[2].x) / 2 + '%;top:' + (a[2].y + b2[2].y) / 2 + '%">' + fmtM(d) + ' từ checkin</div>';
+    }
+    // Phát lại (chỉ các ngày đang xem chi tiết)
+    const tp = trackPts(), cur = L.play.on && tp[L.play.idx];
+    if (cur) { const p = px(cur.kind === 'gap' && cur.from ? cur.from : cur)[2]; html += '<div class="player-mk" style="left:' + p.x + '%;top:' + p.y + '%"><div class="core"></div></div>'; }
+  } else logFiltered().filter(r => r.type === 'ks' && ksMatch(r)).forEach((r, i) => {
     const p = px(r)[2], sel = L.sel === r.id;
     const tip = '<b>' + (i + 1) + '. ' + r.email.split('@')[0] + '</b><br>' + r.ptd + '<br><span class=m>' + r.day + ' ' + r.time + '</span>';
     html += '<div class="mk ksmk' + (sel ? ' is-sel' : '') + '" style="left:' + p.x + '%;top:' + p.y + '%;z-index:' + (sel ? 9 : 7) + '" data-id="' + r.id + '" data-tip="' + tip + '">' +
       (sel ? '<div class="ks-lbl">' + (i + 1) + '. ' + r.email.split('@')[0] + '</div>' : '') + gpin('#1677ff') + '</div>';
   });
-
-  // Phần tử đang chọn (tab Tất cả): vẽ điểm checkin, nét đứt tới nơi cập nhật, ghi khoảng cách (màu theo mức)
-  const sk = L.tab === 'all' && L.sel && recById(L.sel);
-  if (sk && sk.type === 'ks' && sk.ciLat != null && !L.hidden.has(sk.day)) {
-    const a = px({ lat: sk.ciLat, lng: sk.ciLng }), b2 = px(sk), d = ciDist(sk), t = ciTier(d), col = { ok: '#16a34a', warn: '#d97706', bad: '#dc2626' }[t];
-    svg += '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b2[0] + '" y2="' + b2[1] + '" stroke="#fff" stroke-width="5" stroke-linecap="round"/>' +
-      '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b2[0] + '" y2="' + b2[1] + '" stroke="' + col + '" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round"/>';
-    html += '<div class="mkb ci ' + t + '" style="left:' + a[2].x + '%;top:' + a[2].y + '%;z-index:9" data-tip="<b>Checkin · ' + sk.ptd + '</b><br>' + sk.day + ' ' + sk.ciTime + '">' + ic('flag', 'xs') + '</div>';
-    if (Math.hypot(a[0] - b2[0], a[1] - b2[1]) > 46) html += '<div class="ci-dist ' + t + '" style="left:' + (a[2].x + b2[2].x) / 2 + '%;top:' + (a[2].y + b2[2].y) / 2 + '%">' + fmtM(d) + ' từ checkin</div>';
-  }
-
-  // Player marker
-  const tp = trackPts();
-  if (L.play.on && tp[L.play.idx]) {
-    const p = px(tp[L.play.idx])[2];
-    html += '<div class="player-mk" style="left:' + p.x + '%;top:' + p.y + '%"><div class="core"></div></div>';
-  }
   ov.innerHTML = svg;
   $('lgMk').innerHTML = html;
   $('lgMk').querySelectorAll('[data-id]').forEach(el => el.onclick = () => { tipEl.style.display = 'none'; L.sel = +el.dataset.id; syncPlayToSel(); renderLogPanelSel(); renderLogMap(); panSelIntoView(); });
   bindTips($('lgMk'));
 
   if (!light) {   // chú thích không phụ thuộc khung nhìn → bỏ qua khi đang kéo / phóng to
-  // Chú thích: bật/tắt từng ngày trên bản đồ (đồng bộ với mắt ở danh sách); phần ký hiệu thu gọn được
-  const ksLeg = t => '<div class="lgr"><svg viewBox="0 0 27 43" width="10" height="16"><path d="M13.5 0C6 0 0 6 0 13.4c0 9.8 11.3 20.7 12.4 28.6.1.6.5 1 1.1 1s1-.4 1.1-1C15.7 34.1 27 23.2 27 13.4 27 6 21 0 13.5 0z" fill="#1677ff"/><circle cx="13.5" cy="13.5" r="5" fill="#fff"/></svg>' + t + '</div>';
-  if (L.tab === 'ks') $('lgLegend').innerHTML = '<div class="lt">Chú thích</div>' + ksLeg('Vị trí cập nhật kiểm soát');
-  else {
-    const allDays = [...new Set(logFiltered().filter(r => r.type === 'tracking').map(r => r.day))].sort((a, b) => iso(b).localeCompare(iso(a)));
-    const nVis = allDays.filter(d => !L.hidden.has(d)).length;
-    $('lgLegend').innerHTML = '<div class="lt">Ngày trên bản đồ<span class="lg-n">' + nVis + '/' + allDays.length + '</span></div>' +
-      '<div class="lg-days">' + allDays.map(d => { const off = L.hidden.has(d); return '<button class="lgd' + (off ? ' off' : '') + '" data-d="' + d + '" title="' + (off ? 'Hiện' : 'Ẩn') + ' lộ trình ngày ' + d + '">' + ic(off ? 'eyeOff' : 'eye', 'xs') + '<span class="ln" style="border-top-style:solid;border-color:' + dayColor(d) + '"></span>' + d + '</button>'; }).join('') + '</div>' +
-      '<button class="lg-sym-tg" id="lgSymTg">' + ic(L.legSym ? 'chevD' : 'chevR', 'xs') + (L.legSym ? 'Ẩn ký hiệu' : 'Ký hiệu') + '</button>' +
-      (L.legSym ? '<div class="lg-sym"><div class="lgr"><span class="sw" style="background:#2563eb;width:9px;height:9px"></span>Di chuyển (1 điểm/phút)</div>' +
-        '<div class="lgr"><span class="sw" style="background:#fff;border:2px solid #475569"></span>Đứng yên (số phút, vòng càng to dừng càng lâu)</div>' +
-        '<div class="lgr"><span class="ln" style="border-color:#94a3b8"></span>Mất tín hiệu</div>' +
-        '<div class="lgr"><span class="mkb st">' + ic('flag') + '</span>Bắt đầu · <span class="mkb en">' + ic('target') + '</span>Kết thúc / vị trí hiện tại</div>' +
-        (L.tab === 'all' ? '<div class="lgr"><span class="mkb ci ok">' + ic('flag', 'xs') + '</span>Điểm checkin của phần tử đang chọn · nét đứt = khoảng cách tới nơi cập nhật (xanh ≤ ' + CI_OK + ' m · cam ≤ ' + CI_FAR + ' m · đỏ > ' + CI_FAR + ' m)</div>' +
-          '<div class="lgr"><span class="mkb ks">' + ic('pin', 'xs') + '3</span>Phần tử KS tại điểm đứng yên (số = tổng phần tử)</div>' + ksLeg('Cập nhật KS khi đang di chuyển (đúng tọa độ trên lộ trình)') : '') + '</div>' : '');
-    $('lgLegend').querySelectorAll('.lgd').forEach(b => b.onclick = () => toggleDay(b.dataset.d));
-    $('lgSymTg').onclick = () => { L.legSym = !L.legSym; renderLogMap(); };
+    const ksLeg = t => '<div class="lgr"><svg viewBox="0 0 27 43" width="10" height="16"><path d="M13.5 0C6 0 0 6 0 13.4c0 9.8 11.3 20.7 12.4 28.6.1.6.5 1 1.1 1s1-.4 1.1-1C15.7 34.1 27 23.2 27 13.4 27 6 21 0 13.5 0z" fill="#1677ff"/><circle cx="13.5" cy="13.5" r="5" fill="#fff"/></svg>' + t + '</div>';
+    if (L.tab === 'ks') { $('lgLegend').innerHTML = '<div class="lt">Chú thích</div>' + ksLeg('Vị trí cập nhật kiểm soát'); $('lgEmpty').innerHTML = ''; }
+    else {
+      // Bật / tắt chi tiết log từng ngày (đồng bộ với nút ở tiêu đề ngày trong danh sách)
+      const allDays = [...new Set(logFiltered().filter(r => r.type === 'tracking').map(r => r.day))].sort((a, b) => iso(b).localeCompare(iso(a)));
+      const nOn = allDays.filter(d => L.detail.has(d)).length;
+      $('lgLegend').innerHTML = '<div class="lt">Chi tiết log theo ngày<span class="lg-n">' + nOn + '/' + allDays.length + '</span></div>' +
+        '<div class="lg-days">' + allDays.map(d => { const on = L.detail.has(d); return '<button class="lgd' + (on ? '' : ' off') + '" data-d="' + d + '" title="' + (on ? 'Ẩn' : 'Hiện') + ' toàn bộ tọa độ ngày ' + d + '">' + ic(on ? 'eye' : 'eyeOff', 'xs') + '<span class="ln" style="border-top-style:solid;border-color:' + dayColor(d) + '"></span>' + d + '</button>'; }).join('') + '</div>' +
+        '<button class="lg-sym-tg" id="lgSymTg">' + ic(L.legSym ? 'chevD' : 'chevR', 'xs') + (L.legSym ? 'Ẩn ký hiệu' : 'Ký hiệu') + '</button>' +
+        (L.legSym ? '<div class="lg-sym"><div class="lgr"><span class="sw" style="background:#2563eb;width:9px;height:9px"></span>Lần quét (' + SCAN_MIN + ' phút/lần) · nét liền nối các lần quét</div>' +
+          '<div class="lgr"><span class="dotn lg">12</span>Số lần quét trùng vị trí (các chấm chồng khít lên nhau)</div>' +
+          '<div class="lgr"><span class="ln" style="border-color:#dc2626"></span>Mất tín hiệu: nối vị trí cuối → vị trí có lại</div>' +
+          '<div class="lgr"><span class="mkb st">' + ic('flag') + '</span>Ghi nhận tọa độ lần đầu · <span class="mkb en">' + ic('target') + '</span>lần cuối / gần nhất</div>' +
+          (L.tab === 'all' ? ksLeg('Vị trí cập nhật hợp đồng (số = tổng phần tử cùng tọa độ)') + '<div class="lgr"><span class="mkb ci ok">' + ic('flag', 'xs') + '</span>Điểm checkin của phần tử đang chọn · nét đứt = khoảng cách tới nơi cập nhật (xanh ≤ ' + CI_OK + ' m · cam ≤ ' + CI_FAR + ' m · đỏ > ' + CI_FAR + ' m)</div>' : '') + '</div>' : '');
+      $('lgLegend').querySelectorAll('.lgd').forEach(b => b.onclick = () => toggleDetail(b.dataset.d));
+      $('lgSymTg').onclick = () => { L.legSym = !L.legSym; renderLogMap(); };
+      // Chưa bật chi tiết ngày nào và chưa chọn dòng nào → gợi ý cách xem
+      $('lgEmpty').innerHTML = !trackPts().length && !s ? '<div class="map-hint">' + ic('info', 'sm') + '<div><b>Bản đồ chưa tải tọa độ</b><span>Bấm 1 dòng ở danh sách để xem vị trí dòng đó, hoặc bật <b>Cho phép xem chi tiết log</b> ở ngày cần xem để hiện toàn bộ tọa độ quét được trong ngày.</span></div></div>' : '';
+    }
+    renderInspector(); renderPlayer();
   }
-
-  }
-  if (!light) { renderInspector(); renderPlayer(); }
 }
 
 // Chip ngữ cảnh trên bản đồ Lịch sử: đang xem của ai, khoảng ngày nào; 1 QC → liên kết sang tab Realtime của chính QC đó
@@ -2213,8 +2482,8 @@ function renderLogCtx() {
   const em = effEmails(); let rng = dmy(L.from).slice(0, 5) + ' → ' + dmy(L.to).slice(0, 5);
   if (!em.length) { $('lgCtx').innerHTML = ''; return; }
   if (L.tab !== 'ks') {
-    const days = [...new Set(logFiltered().map(r => r.day))], vis = days.filter(d => !L.hidden.has(d));
-    if (vis.length === 1) rng = 'ngày ' + vis[0].slice(0, 5); else if (vis.length < days.length) rng = vis.length + '/' + days.length + ' ngày';
+    const days = [...new Set(logFiltered().map(r => r.day))], on = days.filter(d => L.detail.has(d));
+    rng = !on.length ? 'chưa bật chi tiết log' : on.length === 1 ? 'chi tiết log ngày ' + on[0].slice(0, 5) : 'chi tiết log ' + on.length + '/' + days.length + ' ngày';
   }
   $('lgCtx').innerHTML = em.length === 1
     ? '<div class="map-ctx lg">' + ic('route', 'sm') + '<span>' + (L.tab === 'ks' ? 'Log KS' : 'Lộ trình') + ' <b>' + em[0] + '</b> · ' + rng + '</span>' +
@@ -2225,32 +2494,38 @@ function renderLogCtx() {
 function renderInspector() {
   const r = L.sel && recById(L.sel);
   $('lgCtx').style.display = '';
-  if (!r || (r.type === 'ks' ? !logFiltered().some(x => x.id === r.id) : !trackPts().includes(r))) { $('lgInsp').innerHTML = ''; return; }
+  const ok = r && (r.type === 'ks' ? (L.tab === 'ks' ? logFiltered() : ksAll()).some(x => x.id === r.id) : segsAsc().includes(r));
+  if (!ok) { $('lgInsp').innerHTML = ''; return; }
   $('lgCtx').style.display = 'none';   // popup chi tiết đã hiện email QC
   const q = qcByEmail(r.email);
-  const cp = '<span class="mono">' + coord([r.lat, r.lng]) + '</span><button class="copy" data-c="' + coord([r.lat, r.lng]) + '">' + ic('copy', 'xs') + '</button>';
-  const body = r.type === 'tracking'
-    ? (r.kind === 'move'
-      ? '<dl class="kv"><dt>Loại</dt><dd><span class="sg-tag move">Di chuyển</span></dd><dt>Thời gian ghi nhận</dt><dd>' + r.day + ' ' + r.time + '</dd><dt>Tọa độ</dt><dd>' + cp + '</dd><dt>Số lần quét</dt><dd>1</dd></dl>'
-      : r.kind === 'stop'
-      ? '<dl class="kv"><dt>Loại</dt><dd><span class="sg-tag stop">Đứng yên</span>' + (r.idle ? '<span class="sg-tag idle">Tạm nghỉ</span>' : '') + '</dd><dt>Từ</dt><dd>' + r.day + ' ' + r.start + '</dd><dt>Đến</dt><dd>' + r.end + '</dd>' +
-        '<dt>Thời gian đứng yên</dt><dd><b>' + dur(segMin(r)) + '</b></dd><dt>Số lần quét gộp</dt><dd>' + r.count + '</dd><dt>Tọa độ điểm gốc</dt><dd>' + cp + '</dd></dl>'
-      : '<dl class="kv"><dt>Loại</dt><dd><span class="sg-tag gap">Mất tín hiệu</span></dd><dt>Từ</dt><dd>' + r.day + ' ' + r.start + '</dd><dt>Đến</dt><dd>' + r.end + '</dd><dt>Thời lượng</dt><dd><b>' + dur(segMin(r)) + '</b></dd><dt>Vị trí cuối</dt><dd>' + cp + '</dd></dl>')
-    : '<dl class="kv"><dt>Loại log</dt><dd><span class="badge idle"><i></i>Log KS</span></dd><dt>Tên phần tử</dt><dd><b>' + r.ptd + '</b></dd><dt>Loại KS</dt><dd>' + r.loaiKS + '</dd><dt>Indoor</dt><dd>' + r.indoor + '</dd>' +
-      '<dt>Thời gian cập nhật</dt><dd>' + r.day + ' ' + r.time + '</dd><dt>Thời gian KS</dt><dd>' + (r.ksShow == null ? 'N/A' : r.ksShow + ' phút') + '</dd>' +
-      '<dt>Tọa độ</dt><dd><span class="mono">' + coord([r.lat, r.lng]) + '</span><button class="copy" data-c="' + coord([r.lat, r.lng]) + '">' + ic('copy', 'xs') + '</button></dd></dl>';
+  const cpOf = p => '<span class="mono">' + coord([p.lat, p.lng]) + '</span><button class="copy" data-c="' + coord([p.lat, p.lng]) + '">' + ic('copy', 'xs') + '</button>';
   if (r.type === 'ks') {
     // Popup giữ đúng format prod: mỗi lần bấm chỉ hiện thông tin 1 hợp đồng (phần tử) được chọn, kể cả khi cùng tọa độ có nhiều phần tử
-    const rel = [r];
     $('lgInsp').innerHTML = '<div class="ks-pop"><button class="kp-x" id="inspX">' + ic('x') + '</button>' +
       '<div class="kp-who"><div class="kp-mail">' + r.email + '</div></div>' +
       '<div class="kp-acts"><button class="kp-act on"><span>' + ic('nav') + '</span>Chỉ đường</button><button class="kp-act"><span>' + ic('share') + '</span>Chia sẻ</button></div>' +
       '<div class="kp-t">1. Danh sách hợp đồng liên quan:</div>' +
-      rel.map(x => '<div class="kp-item"><b>' + x.ptd + '</b><div>&gt; Thời gian cập nhật: ' + x.day + ' ' + x.time + '</div><div>&gt; Thời gian kiểm soát: ' + (x.ksShow == null ? 'N/A' : x.ksShow + ' phút') + '</div></div>').join('') +
+      '<div class="kp-item"><b>' + r.ptd + '</b><div>&gt; Thời gian cập nhật: ' + r.day + ' ' + r.time + '</div><div>&gt; Thời gian kiểm soát: ' + (r.ksShow == null ? 'N/A' : r.ksShow + ' phút') + '</div></div>' +
       '</div>';
     $('inspX').onclick = () => { L.sel = null; renderLogPanelSel(); renderLogMap(); };
     return;
   }
+  const nKs = L.tab === 'all' ? (allData().nest.get(r.id) || []).length : 0;   // Log tracking: không có thông tin hợp đồng
+  const colDd = (p, other) => '<dd class="col"><span>' + hm(p.time) + (other ? ' · ngày ' + p.day.slice(0, 5) : '') + '</span><span class="cp">' + cpOf(p) + '</span></dd>';
+  const body = r.kind === 'gap'
+    ? '<dl class="kv"><dt>Loại</dt><dd><span class="sg-tag gap">Mất tín hiệu</span>' + (isOngoing(r) ? '<span class="muted">đang tiếp diễn</span>' : '') + '</dd>' +
+      '<dt>Ngày</dt><dd>' + r.day + '</dd>' +
+      (isOngoing(r) ? '<dt>Mốc gần nhất</dt><dd>' + hm(r.end) + ' · không nhận được log</dd>' : '<dt>Thời gian</dt><dd>' + hm(r.from.time) + ' → ' + hm(r.to.time) + ' (' + durTxt(mins(r.to.time) - mins(r.from.time)) + ')</dd>') +
+      '<dt>Mốc không có log</dt><dd>' + marksTxt(r) + ' (' + r.count + ' lần)</dd>' +
+      '<dt>' + (isOngoing(r) ? 'Tọa độ gần nhất' : 'Vị trí cuối') + '</dt>' + (r.from ? colDd(r.from, false) : '<dd>—</dd>') +
+      '<dt>Có lại tọa độ</dt>' + (r.to ? colDd(r.to, false).replace('</span><span class="cp">', (r.to.open ? ' · mở app' : '') + '</span><span class="cp">') : '<dd>Chưa có lại</dd>') +
+      (r.from && r.to ? '<dt>Vị trí cuối → có lại</dt><dd>' + fmtM(Math.round(meters(r.from, r.to))) + ' · ' + durTxt(absMin(r.to) - absMin(r.from)) + '</dd>' : '') +
+      (nKs ? '<dt>Cập nhật hợp đồng</dt><dd>' + nKs + ' phần tử trong lúc mất tín hiệu</dd>' : '') + '</dl>'
+    : '<dl class="kv"><dt>Loại</dt><dd><span class="sg-tag scan">Lần quét</span>' + (r.open ? '<span class="fl-tag op">' + ic('play', 'xs') + 'Mở app</span>' : '') + (r.first ? '<span class="fl-tag st">' + ic('flag', 'xs') + 'Lần đầu trong ngày</span>' : '') + (r.last ? '<span class="fl-tag en">' + ic('target', 'xs') + (r.day === TODAY ? 'Gần nhất' : 'Lần cuối trong ngày') + '</span>' : '') + '</dd>' +
+      '<dt>Thời gian quét</dt><dd>' + r.day + ' ' + r.time + '</dd><dt>Tọa độ</dt><dd>' + cpOf(r) + '</dd>' +
+      (r.dPrev == null ? '' : '<dt>' + (r.afterGap ? 'Cách vị trí cuối trước khi mất tín hiệu' : 'Cách lần quét trước') + '</dt><dd>' + (r.dPrev < GPS_TOL ? '&lt; ' + GPS_TOL + ' m' : fmtM(r.dPrev)) + '</dd>') +
+      '<dt>Trạng thái QC</dt><dd>' + badge(r.status) + '</dd>' +
+      (nKs ? '<dt>Cập nhật hợp đồng</dt><dd>' + nKs + ' phần tử gần lần quét này</dd>' : '') + '</dl>';
   $('lgInsp').innerHTML = '<div class="inspector"' + (L.play.on ? ' style="animation:none"' : '') + '><div class="insp-h">' + avatar(q) + '<div style="flex:1;min-width:0"><div class="t">' + q.email + '</div><div class="s">' + q.vung + ' · ' + q.cn + '</div></div><button class="icon-btn" id="inspX">' + ic('x') + '</button></div><div class="insp-b">' + body + '</div></div>';
   $('inspX').onclick = () => { L.sel = null; renderLogPanelSel(); renderLogMap(); };
   $('lgInsp').querySelectorAll('.copy').forEach(b => b.onclick = () => copyText(b.dataset.c));
@@ -2261,9 +2536,9 @@ function renderPlayer() {
   if (effEmails().length !== 1 || tp.length < 2) { $('lgPlayer').innerHTML = ''; return; }
   const i = Math.min(L.play.idx, tp.length - 1), cur = tp[i];
   $('lgPlayer').innerHTML = '<div class="player"><button class="play" id="plBtn" title="Phát lại lộ trình">' + ic(L.play.on ? 'pause' : 'play') + '</button>' +
-    '<div class="pt"><div class="row"><span>' + ic('route', 'xs') + ' Phát lại · ' + tp.length + ' bản ghi</span><b>' + cur.day + ' · ' + (cur.kind === 'move' ? cur.time : cur.start.slice(0, 5) + '→' + cur.end.slice(0, 5)) + '</b></div>' +
+    '<div class="pt"><div class="row"><span class="pl-l">' + ic('route', 'xs') + ' Phát lại · ' + tp.filter(r => r.kind === 'scan').length + ' lần quét</span><b>' + (cur.kind === 'gap' ? '<i class="pl-gap">Mất tín hiệu</i>' + (isOngoing(cur) ? 'từ ' + (cur.from ? hm(cur.from.time) : hm(cur.start)) : (cur.from ? hm(cur.from.time) : hm(cur.start)) + '→' + (cur.to ? hm(cur.to.time) : hm(cur.end))) : cur.day + ' · ' + cur.time) + '</b></div>' +
     '<input type="range" id="plRange" min="0" max="' + (tp.length - 1) + '" value="' + i + '"></div>' +
-    '<select class="sel sm spd" id="plSpd" title="Mỗi bước = 1 bản ghi (điểm dừng được nhảy qua 1 bước)"><option value="1">1×</option><option value="5">5×</option><option value="15">15×</option></select></div>';
+    '<select class="sel sm spd" id="plSpd" title="Mỗi bước = 1 lần quét (' + SCAN_MIN + ' phút)"><option value="1">1×</option><option value="5">5×</option><option value="15">15×</option></select></div>';
   $('plSpd').value = L.play.speed;
   $('plBtn').onclick = () => L.play.on ? stopPlay(true) : startPlay();
   $('plRange').oninput = e => { L.play.idx = +e.target.value; L.play.on = L.play.on; L.sel = tp[L.play.idx].id; renderLogPanelSel(); renderLogMap(); };
@@ -2287,26 +2562,18 @@ function stopPlay(render) {
   if (render) renderLogMap();
 }
 
-// ===== Bố trí bản đồ Lịch sử =====
-// 1) Tab Tất cả / Log tracking: mặc định chỉ vẽ 1 ngày (mới nhất) để lộ trình các ngày không chồng lên nhau; bật thêm ngày ở chú thích hoặc mắt của từng ngày
-// 2) Chọn bản ghi thuộc ngày đang ẩn → bản đồ chuyển sang ngày đó
-// 3) Căn khung nhìn chừa chỗ cho chip ngữ cảnh (trên), công cụ (phải), chú thích + thanh phát lại (dưới)
-function ensureDayFocus() {
+// ===== Chi tiết log theo ngày (Hieu chốt 06/10) =====
+// Mặc định chưa ngày nào bật → danh sách chỉ hiện tọa độ có cập nhật hợp đồng + ghi nhận tọa độ lần đầu / lần cuối; bản đồ không tải tọa độ
+// Bật "Cho phép xem chi tiết log" ở 1 ngày → hiện toàn bộ lần quét của ngày đó (danh sách + bản đồ); bật được nhiều ngày. Đổi QC / khoảng ngày → về mặc định
+function ensureDetailReset() {
   if (L.tab === 'ks') return;
   const em = effEmails(); if (!em.length) return;
   const key = em.join(',') + '|' + L.from + '|' + L.to;
   if (L.dayKey === key) return;
-  L.dayKey = key;
-  const days = [...new Set(logFiltered().map(r => r.day))].sort((a, b) => iso(b).localeCompare(iso(a)));
-  L.hidden = new Set(days.slice(1));
+  L.dayKey = key; L.detail = new Set();
 }
-function focusDay(d) {
-  const days = [...new Set(logFiltered().map(x => x.day))];
-  L.hidden = new Set(days.filter(x => x !== d));
-  stopPlay(); L.play.idx = 0; fitLog();
-}
-function toggleDay(d) {
-  L.hidden.has(d) ? L.hidden.delete(d) : L.hidden.add(d);
+function toggleDetail(d) {
+  if (L.detail.has(d)) L.detail.delete(d); else { L.detail.add(d); if (L.open) L.open.add(d); }
   stopPlay(); L.play.idx = 0; fitLog(); renderLogPanel(); renderLogMap();
 }
 // Khung nhìn vừa các điểm trong vùng trống (trừ các khối nổi); trả về { k, cx, cy }
@@ -2321,17 +2588,24 @@ function padFit(pts, maxK, W, H, ins) {
 }
 function fitLog() {
   const m = $('lgMap'), W = m.clientWidth, H = m.clientHeight;
-  const pts = logFiltered().filter(r => L.tab === 'ks' || !L.hidden.has(r.day)).map(r => [r.lat, r.lng]);
+  let pts;
+  if (L.tab === 'ks') pts = logFiltered().map(r => [r.lat, r.lng]);
+  else {
+    const det = trackPts().filter(r => r.kind === 'scan');
+    if (det.length) pts = det.map(r => [r.lat, r.lng]).concat(L.tab === 'all' ? ksAll().filter(k => L.detail.has(k.day)).map(k => [k.lat, k.lng]) : []);
+    else {   // chưa bật chi tiết log: căn theo các tọa độ đang hiện ở danh sách (không vẽ) → bấm 1 dòng thì bản đồ đã ở đúng khu vực
+      const AD = allData(); pts = segsAsc().filter(r => r.kind === 'scan' && (r.first || r.last || AD.nest.has(r.id))).map(r => [r.lat, r.lng]);
+    }
+  }
   if (!pts.length || !W || !H) return fitView('log', pts, 4.2);
   if (L.tab === 'ks') { MV.log = clampView(padFit(pts, 4.2, W, H, { t: 60, r: 58, b: 70, l: 20 })); return; }
-  // chừa chỗ cho chip ngữ cảnh (trên), công cụ (phải), thanh phát lại (dưới) và chú thích ngày (góc trái dưới):
-  // bản đồ thấp → chừa cột trái; bản đồ cao → chừa dải dưới; chọn cách cho lộ trình hiển thị to hơn
-  const nd = Math.min(6, new Set(logFiltered().map(r => r.day)).size), legH = 70 + nd * 22 + (L.legSym ? 150 : 0);
+  // chừa chỗ cho chip ngữ cảnh (trên), công cụ (phải), thanh phát lại (dưới) và chú thích ngày (góc trái dưới)
+  const nd = Math.min(6, new Set(logFiltered().map(r => r.day)).size), legH = 70 + nd * 22 + (L.legSym ? 130 : 0);
   const a = padFit(pts, 4.2, W, H, { t: 60, r: 58, b: 84, l: 215 }), b = padFit(pts, 4.2, W, H, { t: 60, r: 58, b: Math.max(84, legH + 24), l: 20 });
   MV.log = clampView(b.k >= a.k * .95 ? b : a);
 }
 function renderLog() {
-  ensureDayFocus();
+  ensureDetailReset();
   fitLog();
   if ($('lgFilter')) updateFilterSummary($('lgFilter'));
   renderPicker(); renderLogPanel(); renderLogMap();
@@ -2364,7 +2638,7 @@ function initLog() {
   $('lgReset').onclick = () => {
     stopPlay();
     Object.assign(L, { emails: [], viewEmail: null, vung: '', cn: '', hd: '', loai: '', st: '', sel: null, dayKey: '' });
-    L.open = null; L.hidden.clear(); L.play.idx = 0;
+    L.open = null; L.hidden.clear(); L.detail = new Set(); L.play.idx = 0;
     ['lgVung', 'lgCN', 'lgHD', 'lgLoai', 'lgSt', 'lgKsTime'].forEach(id => $(id).value = '');
     setPreset(3); setMode('all');
   };
@@ -2374,7 +2648,7 @@ function initLog() {
 function openHistory(email) {
   stopPlay();
   Object.assign(L, { emails: [email], viewEmail: null, vung: '', cn: '', hd: '', loai: '', st: '', ksQ: '', sel: null, open: null, dayKey: '' });
-  L.play.idx = 0; L.hidden.clear();
+  L.play.idx = 0; L.hidden.clear(); L.detail = new Set();
   ['lgVung', 'lgCN', 'lgHD', 'lgLoai', 'lgSt', 'lgKsTime'].forEach(id => $(id).value = '');
   setPreset(3);
   L.mode = 'all'; L.tab = 'all'; $('lgMode').value = 'all'; $('lgSt').disabled = false;
@@ -2428,7 +2702,9 @@ function panSelIntoView() {
   const pop = $('lgInsp').firstElementChild, pw = pop ? pop.offsetWidth + 24 : 12, ph = pop ? pop.offsetHeight + 24 : 12;
   const p = proj(MV.log, r.lat, r.lng), x = p.x / 100 * W, y = p.y / 100 * H;
   const A = W - 58 - pw >= 260 ? [pw, 56, W - 58, H - 84] : [12, ph, W - 58, H - 84];   // vùng trống: bên phải popup, hoặc bên dưới nếu bản đồ hẹp
-  const pts = [[r.lat, r.lng]]; if (L.tab === 'all' && r.type === 'ks' && r.ciLat != null) pts.push([r.ciLat, r.ciLng]);
+  const pts = r.kind === 'gap' ? [r.from, r.to].filter(Boolean).map(p => [p.lat, p.lng]) : [[r.lat, r.lng]];   // mất tín hiệu: đưa cả vị trí cuối + vị trí có lại vào khung
+  if (!pts.length) return;
+  if (L.tab === 'all' && r.type === 'ks' && r.ciLat != null) pts.push([r.ciLat, r.ciLng]);
   const ok = pts.every(([la, ln]) => { const q = proj(MV.log, la, ln), qx = q.x / 100 * W, qy = q.y / 100 * H; return qx > A[0] + 24 && qx < A[2] - 24 && qy > A[1] + 44 && qy < A[3] - 12; });
   if (ok) return;
   animView('log', padFit(pts, MV.log.k, W, H, { l: A[0] + 24, t: A[1] + 44, r: W - A[2] + 24, b: H - A[3] + 12 }));
